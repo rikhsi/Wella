@@ -1,0 +1,151 @@
+<div class="description__wrapper">
+    <div nz-row [nzGutter]="[0,28]">
+        <div nz-col nzSpan="24">
+            <app-breadCrump></app-breadCrump>
+        </div>
+        <div nz-col nzSpan="24">
+            <div nz-row [nzGutter]="[20,24]">
+                <div nz-col nzXl="12" nzLg="13" nzXs="24">
+                    <div nz-row [nzGutter]="[20,24]">
+                        <div nz-col nzXl="24" nzLg="24" nzMd="19" nzSm="19" nzXs="24">
+                            <div nz-row>
+                                <div nz-col nzSpan="24" class="description__gallery">
+                                    <div nz-row nzAlign="middle" nzJustify="center" [nzGutter]="{xl:12,xs:6}">
+                                        <div nz-col nzSpan="24">
+                                            <div class="description__gallery-row">
+                                                <div class="description__button description__button-rotate">
+                                                    <button nz-row nzJustify="center" nzAlign="middle" (click)="swipePrev()">
+                                                        <svg nz-col width="9" height="16" viewBox="0 0 9 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <path d="M0.999997 1L8 8L1 15" stroke="#130F26" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                                        </svg>     
+                                                    </button>
+                                                </div>
+                                                <swiper [config]="configBig" [thumbs]="{ swiper: thumbsSwiper }" class="mySwiper__big">
+                                                    <ng-template swiperSlide *ngFor="let img of product?.photos">
+                                                        <div class="mySwiper__big-img">                                                   
+                                                            <img nz-image [nzSrc]="img" [nzFallback]="fallback" onerror="this.parentNode.removeChild(this)">                                           
+                                                        </div>
+                                                    </ng-template>
+                                                </swiper>  
+                                                <div class="description__button">
+                                                    <button nz-row nzJustify="center" nzAlign="middle" (click)="swipeNext()">
+                                                        <svg nz-col width="9" height="16" viewBox="0 0 9 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                            <path d="M0.999997 1L8 8L1 15" stroke="#130F26" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                                        </svg>     
+                                                    </button>
+                                                </div>
+                                            </div>  
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> 
+                        </div>
+                        <div nz-col nzXl="24" nzLg="24" nzMd="5" nzSm="5" nzXs="24">
+                            <div nz-row nzJustify="center">
+                                <div nz-col nzSpan="24">
+                                    <swiper [config]="configSmall" (swiper)="thumbsSwiper = $event" class="mySwiper__small">
+                                        <ng-template swiperSlide *ngFor="let img of product?.photos">
+                                            <div class="mySwiper__small-img">
+                                                <img nz-image [nzSrc]="img" [nzFallback]="fallback" onerror="this.parentNode.removeChild(this)">
+                                            </div>
+                                        </ng-template>
+                                    </swiper>  
+                                </div>
+                            </div>            
+                        </div>
+                    </div>
+                </div>
+                <div nz-col nzXl="12" nzLg="11" nzXs="24">
+                    <div nz-row [nzGutter]="[0,{xl:48,lg:36,md:36,sm:36,xs:36}]">
+                        <div nz-col nzSpan="24" class="card__title">
+                            <span>
+                                {{product?.title}}
+                            </span>
+                        </div>
+                        <div nz-col nzSpan="24" class="card__info">
+                            <span>
+                                {{product?.description}}
+                            </span>
+                        </div>
+                        <div nz-col nzSpan="24" class="card__table">
+                            <div nz-row [nzGutter]="[0,16]">
+                                <div nz-col nzSpan="24">
+                                    <div nz-row nzJustify="space-between">
+                                        <div nz-col>
+                                            <span class="card__table-title">{{'card.brand'| translate}}</span>
+                                        </div>
+                                        <div nz-col>
+                                            <span class="card__table-info">{{product?.brand}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div nz-col nzSpan="24">
+                                    <div nz-row nzJustify="space-between">
+                                        <div nz-col>
+                                            <span class="card__table-title">{{'card.country' | translate}}</span>
+                                        </div>
+                                        <div nz-col>
+                                            <span class="card__table-info">{{product?.country}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div nz-col nzSpan="24">
+                                    <div nz-row nzJustify="space-between">
+                                        <div nz-col>
+                                            <span class="card__table-title">{{'card.size' | translate}}</span>
+                                        </div>
+                                        <div nz-col>
+                                            <span class="card__table-info">{{product?.size}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div nz-col nzSpan="24">
+                                    <div nz-row nzJustify="space-between">
+                                        <div nz-col>
+                                            <span class="card__table-title">{{'card.color' | translate}}</span>
+                                        </div>
+                                        <div nz-col>
+                                            <span class="card__table-info">{{product?.color}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div nz-col nzSpan="24">
+                                    <div nz-row nzJustify="space-between">
+                                        <div nz-col>
+                                            <span class="card__table-title">{{'card.price' | translate}}</span>
+                                        </div>
+                                        <div nz-col>
+                                            <span class="card__table-info">{{product?.price}}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div nz-col nzSpan="24">
+                                    <div nz-row nzJustify="space-between">
+                                        <div nz-col>
+                                            <span class="card__table-title">{{'card.available' | translate}}</span>
+                                        </div>
+                                        <div nz-col>
+                                            <span class="card__table-info" *ngIf="product?.available">Есть</span>
+                                            <span class="card__table-info" *ngIf="!product?.available">Нет</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div nz-col nzSpan="24">
+                            <div nz-row nzJustify="end">
+                                <div nz-col class="card__button">
+                                    <button nz-button nzType="primary" (click)="showModal()">{{'card.button' | translate}}</button>
+                                    <app-modal [isVisible]="isVisible" (closeModal)="showModal()" (showAlert)="isAlertShow()" ></app-modal>
+                                    <app-alert [isVisible]="isAlertVisible" (closeAlert)="isAlertShow()"></app-alert>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

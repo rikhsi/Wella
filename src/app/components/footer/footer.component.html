@@ -1,0 +1,131 @@
+<div nz-row>
+    <div nz-col nzSpan="24">
+        <div nz-row class="footer__top">
+            <div nz-col nzSpan="24" class="footer__container">
+                <div nz-row nzJustify="space-between">
+                    <div nz-col class="footer__top-left">
+                        <div nz-row [nzGutter]="[0,30]">
+                            <div nz-col nzSpan="24">
+                                <div nz-row>
+                                    <h1 role="button" nz-col (click)="routerNavigate()" class="footer__logo">
+                                        WELLA
+                                    </h1>
+                                </div>
+                            </div>
+                            <div nz-col nzSpan="24">
+                                <ul nz-row nzJustify="center" [nzGutter]="[0,{xl:30,lg:30,md:24,sm:24,xs:24}]">
+                                    <li nz-col nzSpan="24" class="footer__form footer__hidden">
+                                        {{'form.title' | translate}}
+                                    </li>
+                                    <li nz-col nzSpan="24" class="footer__hidden">
+                                        <div nz-row nzJustify="center">
+                                            <div nz-col class="footer__form-button">
+                                                <button (click)="showModal()"> {{'footer.button' | translate}}</button>
+                                                <app-modal [isVisible]="isVisible" (closeModal)="showModal()" (showAlert)="isAlertShow()" ></app-modal>
+                                                <app-alert [isVisible]="isAlertVisible" (closeAlert)="isAlertShow()"></app-alert>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li nz-col nzXl="24" nzLg="24" nzMd="20" nzSm="20" nzXs="24" class="footer__info">
+                                        {{'footer.left.info' | translate}}
+                                    </li>
+                                </ul>
+                            </div>
+                            <div nz-col nzSpan="24">
+                                <div nz-row nzJustify="center">
+                                    <div nz-col nzLg="24">
+                                        <app-media></app-media>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div nz-col class="footer__top-middle">
+                        <div nz-row>
+                            <div nz-col nzSpan="24">
+                                <ul nz-row [nzGutter]="[0,30]">
+                                    <li nz-col nzSpan="24" class="footer__top-title">{{'footer.middle.title' | translate}}</li>
+                                    <li nz-col nzSpan="24">
+                                        <ul nz-row [nzGutter]="[0,10]" class="footer__info">
+                                            <li nz-col>{{'footer.middle.adress' | translate}}</li>
+                                            <li nz-col>
+                                                <ul nz-row [nzGutter]="8" nzAlign="middle">
+                                                    <li nz-col>
+                                                        <a href="https://yandex.uz/maps/-/CCUVQ-cioC" target="_blank"  class="footer__info-location">
+                                                            <ul nz-row nzGutter="8">
+                                                                <li nz-col> 
+                                                                    <svg width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                                        <path d="M9.00011 11.9999C7.09492 11.9999 5.53857 10.5079 5.53857 8.66227C5.53857 6.81665 7.09492 5.33325 9.00011 5.33325C10.9053 5.33325 12.4617 6.82527 12.4617 8.6709C12.4617 10.5165 10.9053 11.9999 9.00011 11.9999ZM9.00011 6.62691C7.83732 6.62691 6.88026 7.5411 6.88026 8.6709C6.88026 9.80069 7.82838 10.7149 9.00011 10.7149C10.1718 10.7149 11.12 9.80069 11.12 8.6709C11.12 7.5411 10.1629 6.62691 9.00011 6.62691Z" fill="black"/>
+                                                                        <path d="M8.99704 20C7.57695 20 6.14727 19.4793 5.03424 18.4472C2.20366 15.8066 -0.924358 11.5946 0.255846 6.58298C1.32091 2.03626 5.41804 0 8.99704 0C8.99704 0 8.99704 0 9.00663 0C12.5856 0 16.6828 2.03626 17.7478 6.59228C18.9184 11.6039 15.7904 15.8066 12.9598 18.4472C11.8468 19.4793 10.4171 20 8.99704 20ZM8.99704 1.3947C6.20484 1.3947 2.61626 2.83589 1.66633 6.88982C0.630058 11.2692 3.47022 15.0442 6.04173 17.4338C7.70169 18.9865 10.302 18.9865 11.9619 17.4338C14.5238 15.0442 17.364 11.2692 16.3469 6.88982C15.3874 2.83589 11.7892 1.3947 8.99704 1.3947Z" fill="black"/>
+                                                                    </svg> 
+                                                                </li>
+                                                                <li nz-col class="footer__info-location-text">
+                                                                    {{'footer.middle.location' | translate}}
+                                                                </li>
+                                                            </ul>
+                                                        </a>                                         
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li nz-col class="footer__black">
+                                                <span>{{'footer.middle.date' | translate}} </span>
+                                                <span>{{'footer.middle.time' | translate}}</span>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div nz-col class="footer__top-right">
+                        <div nz-row>
+                            <div nz-col nzSpan="24">
+                                <ul nz-row [nzGutter]="[0,30]">
+                                    <li nz-col nzSpan="24" class="footer__top-title">{{'footer.right.title' | translate}}</li>
+                                    <li nz-col nzSpan="24">
+                                        <ul nz-row [nzGutter]="[0,15]" class="footer__info">
+                                            <li nz-col class="footer__info-location">Phone: <a href="tel:+998707153980" class="footer__info-location-text"> 998 (70) 715-39-80</a></li>
+                                            <li nz-col class="footer__info-location">Mobile: <a href="tel:+998931896720" class="footer__info-location-text"> 998 (93) 189-67-20</a></li>
+                                            <li nz-col class="footer__info-location">Email: <a href="mailto:support@wella.uz" class="footer__info-location-text">support@wella.uz</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div nz-col nzSpan="24">
+        <div nz-row nzAlign="middle" class="footer__bottom">
+            <div nz-col nzSpan="24" class="footer__container">
+                <div nz-row nzJustify="space-between">
+                    <div nz-col>
+                        <span class="footer__bottom-inc">
+                            © 2022 Wella , Inc.
+                        </span>
+                    </div>
+                    <div nz-col>
+                        <div (click)="autoScroll()" class="footer__bottom-button">
+                            <div nz-row [nzGutter]="13">
+                                <div nz-col role="button">
+                                    <span>
+                                        {{'footer.scroll' | translate}}
+                                    </span>
+                                </div>
+                                <div nz-col>
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M4.35355 7.0203C4.15829 7.21556 3.84171 7.21556 3.64645 7.0203C3.45118 6.82504 3.45118 6.50846 3.64645 6.3132L4.35355 7.0203ZM8 2.66675L7.64645 2.31319L8 1.95964L8.35355 2.31319L8 2.66675ZM12.3536 6.31319C12.5488 6.50846 12.5488 6.82504 12.3536 7.0203C12.1583 7.21556 11.8417 7.21556 11.6464 7.0203L12.3536 6.31319ZM8.5 12.6667C8.5 12.9429 8.27614 13.1667 8 13.1667C7.72386 13.1667 7.5 12.9429 7.5 12.6667L8.5 12.6667ZM3.64645 6.3132L7.64645 2.31319L8.35355 3.0203L4.35355 7.0203L3.64645 6.3132ZM8.35355 2.31319L12.3536 6.31319L11.6464 7.0203L7.64645 3.0203L8.35355 2.31319ZM8.5 2.66675L8.5 12.6667L7.5 12.6667L7.5 2.66675L8.5 2.66675Z" fill="white"/>
+                                    </svg>  
+                                </div>
+                            </div>  
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

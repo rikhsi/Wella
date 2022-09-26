@@ -1,0 +1,57 @@
+<div class="partners__container">
+    <div nz-row [nzGutter]="[0,80]">
+        <div nz-col nzSpan="24">
+            <div nz-row [nzGutter]="[0,40]">
+                <div nz-col nzSpan="24" class="tab">
+                    <nz-tabset [nzType]="'card'">
+                        <nz-tab nzTitle="Все партнёры">
+                            <nz-table
+                                #partnersList
+                                [nzData]="partners"
+                                [nzLoading]="tableLoading"
+                                [nzPageSize]="10"
+                            >
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Фото</th>
+                                        <th>Название</th>
+                                        <th>Дата</th>
+                                        <th [nzWidth]="'8%'">Инструменты</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let data of partnersList.data">
+                                        <td>{{data.id}}</td>
+                                        <td>
+                                            <div class="partners__img">
+                                                <img nz-image [nzSrc]="data.photo" [nzFallback]="fallback" onerror="this.parentNode.removeChild(this)">
+                                            </div>
+                                        </td>
+                                        <td [nzEllipsis]="true">{{data.title}}</td>
+                                        <td>{{ data.created_at }}</td>
+                                        <td>
+                                            <div nz-row nzJustify="space-between">
+                                                <div nz-col>
+                                                    <button title="Удалить" class="button" (click)="showConfirm(data.id)">
+                                                        <span nz-icon nzType="delete" nzTheme="outline"></span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </nz-table>      
+                        </nz-tab>
+                    </nz-tabset>
+                    <div nz-row class="tab__buttons" [nzGutter]="20" nzAlign="middle">
+                        <div nz-col>
+                            <span nz-icon title="Обновить" nzType="reload" nzTheme="outline" class="tab__reload" (click)="getPartners()"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

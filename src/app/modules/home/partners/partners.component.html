@@ -1,0 +1,21 @@
+<div class="partners__wrapper">
+    <div nz-row>
+        <div nz-col nzSpan="24">
+            <swiper [config]="config" class="partners__swiper">
+                <ng-template swiperSlide *ngFor="let partner of partners">
+                    <div nz-row nzJustify="start" nzAlign="middle" class="partners__card">
+                        <div nz-col nzXl="22" nzLg="18" nzMd="16" nzSm="20" nzXs="24">
+                            <div nz-row>
+                                <div nz-col>
+                                    <img [src]="partner.photo">
+                                </div>
+                            </div>
+                        </div>            
+                    </div>
+                </ng-template>
+            </swiper>
+        </div>
+    </div>
+</div>
+
+

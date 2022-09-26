@@ -1,0 +1,40 @@
+<div nz-row nzJustify="center" nzAlign="middle" class="log__container">
+    <div nz-col nzXl="7" nzLg="9" nzMd="11" nzSm="13" nzXs="22">
+        <div nz-row [nzGutter]="[0,{xl:30,lg:30,md:30,sm:20,xs:20}]" nzJustify="center">
+            <div nz-col>
+                <nz-spin nzSimple [nzSize]="'large'" *ngIf="loading"></nz-spin>
+            </div>
+            <div nz-col nzSpan="24">
+                <h1 class="log__title">Войти</h1>
+            </div>
+            <div nz-col nzSpan="24">
+                <h2 class="log__info">Войдите и начните управлять магазином, только для персонала</h2>
+            </div>
+            <div nz-col nzSpan="24">
+                <form nz-form  [formGroup]="logIn" (ngSubmit)="submitForm()">
+                    <div nz-row [nzGutter]="[0,{xl:18,lg:18,md:18,sm:12,xs:12}]">
+                        <div nz-col nzSpan="24">
+                            <nz-form-control  nzHasFeedback style="padding: 0;">
+                                <nz-input-group nzPrefixIcon="user" style="font-size: 20px;">
+                                    <input formControlName="name" nz-input placeholder="Введите логин" class="log__input" />
+                                </nz-input-group>
+                            </nz-form-control>
+                        </div>
+                        <div nz-col nzSpan="24">
+                            <nz-form-control nzHasFeedback>
+                                <nz-input-group nzPrefixIcon="lock" style="font-size: 20px;">
+                                    <input formControlName="password" nz-input type="password" placeholder="Введите пароль" class="log__input"/>
+                                </nz-input-group>
+                            </nz-form-control>
+                        </div>
+                        <div nz-col nzSpan="24">
+                            <nz-form-control>
+                                <button nz-button nzType="primary" class="log__button">Войти</button>
+                            </nz-form-control>
+                        </div>
+                    </div>  
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

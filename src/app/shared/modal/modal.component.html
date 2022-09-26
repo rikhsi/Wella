@@ -1,0 +1,30 @@
+<nz-modal [nzWidth]="'auto'" [(nzVisible)]="isVisible" (nzOnCancel)="modalCancel()" [nzFooter]="null" [nzCentered] = "true" [nzAutofocus]="null" [nzClosable]="false">
+    <ng-container *nzModalContent>
+        <div class="modal__container">
+            <div nz-row [nzGutter]="[0,{xl:48,lg:24,md:24,sm:24,xs:24}]">
+                <div nz-col nzSpan="24">
+                    <span class="modal__title">{{'form.title' | translate}}</span>
+                </div>
+                <div nz-col nzSpan="24">
+                    <form nz-form [formGroup]="newOrder" (ngSubmit)="submitForm($event)">
+                        <nz-form-item>
+                            <nz-form-control nzErrorTip="{{'form.clientNameError' | translate}}">
+                                <nz-input-group>
+                                    <input  formControlName="clientName" placeholder="{{'form.clientName' | translate}}" class="modal__input"/>
+                                </nz-input-group>
+                            </nz-form-control>
+                        </nz-form-item>
+                        <nz-form-item>
+                            <nz-form-control nzErrorTip="{{'form.clientNumberError' | translate}}">
+                                <nz-input-group>
+                                    <input  formControlName="clientNumber" placeholder="{{'form.clientNumber' | translate}}" mask="+000(00) 000-00-00" [showMaskTyped]="false" class="modal__input"/>
+                                </nz-input-group>
+                            </nz-form-control>
+                        </nz-form-item>
+                        <button class="modal__button">{{'form.button' | translate}}</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+</nz-modal>

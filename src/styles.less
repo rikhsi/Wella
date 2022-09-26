@@ -1,0 +1,175 @@
+@import "../node_modules/ng-zorro-antd/ng-zorro-antd.less";
+@import 'swiper/less';
+@import 'swiper/less/navigation';
+@import 'swiper/less/pagination';
+@import 'swiper/less/effect-fade';
+@import 'swiper/less/grid';
+@import 'https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;900&display=swap';
+
+*,
+*:before,
+*:after {
+    font-family: 'Nunito Sans', sans-serif;
+    font-style: normal;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+    width: 100%;
+    font-size: 100%;
+    line-height: 1;
+    font-size: 14px;
+    -ms-text-size-adjust: 100%;
+    -moz-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+}
+
+input,
+button,
+textarea {
+    font-family: inherit;
+}
+
+input::-ms-clear {
+    display: none;
+}
+
+button {
+    cursor: pointer;
+
+    &::-moz-focus-inner {
+        padding: 0;
+        border: 0;
+    }
+}
+
+ul li {
+    list-style: none;
+    padding: 0;
+}
+
+a,
+a:visited,
+a:hover,
+a:focus {
+    color: inherit;
+    text-decoration: none;
+    outline: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    font-size: inherit;
+    line-height: inherit;
+    font-weight: inherit;
+    margin: 0;
+
+}
+
+/*--------------------*/
+
+img {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    vertical-align: top;
+}
+
+.ant {
+    &-modal {
+        &-content {
+            width: auto;
+            border-radius: 48px;
+            animation: button 4s linear infinite;
+            background-size: 180% auto;
+            background-image: linear-gradient(-200deg,
+                    #f1f1f1f1 0%,
+                    #f6f6f6f6 100%);
+            background-clip: border-box;
+            -webkit-background-clip: border-box;
+            -webkit-animation: button 4s linear infinite;
+
+            @keyframes button {
+                0% {
+                    background-position: 100% center;
+                }
+            }
+
+            @media (max-width:767px) {
+                border-radius: 24px;
+            }
+        }
+
+        &-body {
+            padding: 0;
+        }
+    }
+
+    &-form {
+        &-item-explain-error {
+            color: rgb(135, 51, 51);
+
+            @media (max-width:1199px) {
+                font-size: 12px;
+            }
+        }
+    }
+}
+
+.swiper {
+    height: auto;
+
+    &-pagination {
+
+        &-horizontal.swiper-pagination-bullets .swiper-pagination-bullet {
+            margin: 0;
+        }
+
+        &-bullet {
+            width: 12px;
+            height: 12px;
+            opacity: 0.5;
+
+            @media (max-width:575px) {
+                width: 6px;
+                height: 6px;
+            }
+
+            &-active {
+                width: 16px;
+                height: 16px;
+                opacity: 1;
+                background-color: black;
+
+                @media (max-width:575px) {
+                    width: 8px;
+                    height: 8px;
+                }
+            }
+        }
+    }
+}
+
+@keyframes buttonClip {
+    to {
+        background-position: 100% center;
+    }
+}
+
+@keyframes textclip {
+    to {
+        background-position: 200% center;
+    }
+}

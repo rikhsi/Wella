@@ -1,0 +1,14 @@
+<div *ngIf="isLoading" class="spin">
+    <nz-spin nzSize="large"></nz-spin> 
+</div>
+<div class="app__wrapper">
+    <header *ngIf="defaultPage">
+        <app-header (showLoading)="loading()"></app-header>
+    </header>
+    <main class="app__main">
+        <router-outlet></router-outlet>
+    </main> 
+    <footer *ngIf="defaultPage">
+        <app-footer></app-footer>
+    </footer>
+</div>

@@ -1,0 +1,95 @@
+<div class="banner__container">
+    <div nz-row [nzGutter]="[0,80]">
+        <div nz-col nzSpan="24">
+            <div nz-row [nzGutter]="[0,40]">
+                <div nz-col nzSpan="24" class="tab">
+                    <nz-tabset [nzType]="'card'">
+                        <nz-tab nzTitle="Все баннеры" (nzClick)="tabsControle(1)">
+                            <nz-table
+                                #banners
+                                [nzData]="allBanners"
+                                [nzLoading]="tableLoading"
+                                [nzPageSize]="10"
+                            >
+                                <thead>
+                                    <tr>
+                                        <th [nzWidth]="'6%'" *ngIf="showRows">
+                                            <button nz-button nzType="primary" [disabled]="setOfChecked.size < 5 || setOfChecked.size > 5" (click)="setActiveBanner()">
+                                                <span nz-icon nzType="check"></span>
+                                                <span>{{ setOfChecked.size }}</span>
+                                            </button>
+                                        </th>
+                                        <th>ID</th>
+                                        <th>Фото</th>
+                                        <th>Название</th>
+                                        <th>Дата</th>
+                                        <th [nzWidth]="'8%'" *ngIf="!showRows">Инструменты</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let data of banners.data">
+                                        <td [nzChecked]="setOfChecked.has(data.id)" (nzCheckedChange)="isChecked(data.id, $event)" *ngIf="showRows"></td>
+                                        <td>{{data.id}}</td>
+                                        <td>
+                                            <div class="banner__img">
+                                                <img nz-image [nzSrc]="data.photo" [nzFallback]="fallback" onerror="this.parentNode.removeChild(this)">
+                                            </div>
+                                        </td>
+                                        <td [nzEllipsis]="true">{{data.title}}</td>
+                                        <td [nzEllipsis]="true">{{data.created_at}}</td>
+                                        <td *ngIf="!showRows">
+                                            <div nz-row nzJustify="space-between">
+                                                <div nz-col>
+                                                    <button title="Удалить" class="button" (click)="isActive(data.isActive,data.id)">
+                                                        <span nz-icon nzType="delete" nzTheme="outline"></span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </nz-table>      
+                        </nz-tab>
+                        <nz-tab nzTitle="Активные баннеры" (nzClick)="tabsControle(2)">
+                            <nz-table
+                            #active
+                            [nzData]="activeBanners"
+                            [nzLoading]="tableLoading"
+                            [nzPageSize]="5"
+                            [nzShowPagination]="false"
+                            >
+                            <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Фото</th>
+                                    <th>Название</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let data of active.data">
+                                    <td>{{data.id}}</td>
+                                    <td>
+                                        <div class="banner__img">
+                                            <img  nz-image [nzSrc]="data.photo" [nzFallback]="fallback" onerror="this.parentNode.removeChild(this)">
+                                        </div>
+                                    </td>
+                                    <td>{{ data.title }}</td>
+                                </tr>
+                            </tbody>
+                        </nz-table>      
+                        </nz-tab>
+                    </nz-tabset>
+                    <div nz-row class="tab__buttons" [nzGutter]="20" nzAlign="middle">
+                        <div nz-col *ngIf="tabsIndex === 1">
+                            <span nz-icon title="Добавить в активные" nzType="folder-add" nzTheme="outline" class="tab__add" (click)="showCheckbox()"></span>
+                        </div>
+                        <div nz-col>
+                            <span nz-icon title="Обновить" nzType="reload" nzTheme="outline" class="tab__reload" (click)="getBanners(); getActiveBanners();"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

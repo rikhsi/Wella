@@ -1,0 +1,55 @@
+@import '../../../styles/textStyles.less';
+@import '../../../styles/colors.less';
+@import '../../../styles/animation.less';
+
+.nav {
+    &__wrapper {
+        padding-left: 20px;
+    }
+
+    &__title {
+        letter-spacing: -0.02em;
+        .text(600, 36px, 130%, @black);
+    }
+
+    &__button {
+        height: auto;
+        padding: 12px 32px;
+        border: 1px solid @black;
+        border-radius: 36px;
+        background: inherit;
+        transition: 0.5s;
+        white-space: nowrap;
+        .text(700, 14px, 19px, @black);
+
+        &:active {
+            transform: scale(90%);
+            transition: 0.3s;
+        }
+
+        @media (min-width:991px) {
+            &:hover {
+                border: none;
+                color: @white;
+                transition: 0.8s;
+                .animation();
+            }
+        }
+    }
+
+    &__media {
+        padding-right: 20px;
+        flex-wrap: nowrap;
+        overflow-x: scroll;
+
+        &::-webkit-scrollbar {
+            display: none;
+        }
+    }
+
+    &__active {
+        background-color: @black;
+        color: @white;
+        transition: 0.3s;
+    }
+}

@@ -1,0 +1,14 @@
+<div nz-row [nzGutter]="[{xl:25,lg:20,md:15,sm:10,xs:10},0]" nzAlign="middle">
+    <div nz-col *ngFor="let page of pages" class="crump__navigation">
+        <div nz-row [nzGutter]="[{xl:25,lg:20,md:15,sm:10,xs:10},0]" nzAlign="middle">
+            <div nz-col role="button" class="crump__page">
+                <span (click)="routerNavigate(page.route,page.id)">{{page.name | translate}}</span>
+            </div>
+            <div nz-col class="crump__pointer">
+                <svg width="7" height="10" viewBox="0 0 7 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M1.18306 9.19194C0.938981 8.94786 0.938981 8.55214 1.18306 8.30806L4.49112 5L1.18306 1.69194C0.93898 1.44786 0.93898 1.05214 1.18306 0.808059C1.42714 0.56398 1.82286 0.56398 2.06694 0.808059L5.81694 4.55806C6.06102 4.80214 6.06102 5.19786 5.81694 5.44194L2.06694 9.19194C1.82286 9.43602 1.42714 9.43602 1.18306 9.19194Z" fill="#B7BCCA" stroke="#B7BCCA" stroke-width="0.3" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </div>
+        </div>
+    </div>
+</div>

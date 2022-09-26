@@ -1,0 +1,14 @@
+@import './colors.less';
+
+.textAnimation() {
+    animation: textclip 2s linear infinite;
+    background-size: auto auto;
+    background-size: 180% auto;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-image: linear-gradient(-210deg,
+            @purple 0%,
+            @black 100%);
+    ;
+}

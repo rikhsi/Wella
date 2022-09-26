@@ -1,0 +1,11 @@
+@import './colors.less';
+
+.animation() {
+    animation: buttonClip 2s linear infinite;
+    background-size: 180% auto;
+    background-image: linear-gradient(-200deg,
+            @cardGrey 0%,
+            @black 100%);
+    background-clip: border-box;
+    -webkit-background-clip: border-box;
+}

@@ -1,0 +1,42 @@
+@import '../../styles/textStyles.less';
+@import '../../styles/colors.less';
+@import '../../styles/text.animation.less';
+
+.crump {
+    &__navigation {
+        .text(600, 14px, 125%, @black);
+
+        &:last-child {
+            pointer-events: none;
+            color: @grey;
+
+            .crump {
+                &__pointer {
+                    display: none;
+                }
+            }
+        }
+    }
+
+    &__page {
+        transition: 0.3s;
+        cursor: pointer;
+
+        &:hover {
+            transform: scale(130%);
+            transition: 0.3s;
+            .textAnimation();
+        }
+
+        &:active {
+            transform: scale(90%);
+            .textAnimation();
+        }
+
+        @media (max-width:1199px) {
+            &:hover {
+                transform: none;
+            }
+        }
+    }
+}

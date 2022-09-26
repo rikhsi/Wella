@@ -1,0 +1,15 @@
+<div class="catalog__wrapper">
+    <div class="catalog__container">
+        <div nz-row [nzGutter]="[0,28]">
+            <div nz-col nzSpan="24" class="catalog__crump">
+                <app-breadCrump></app-breadCrump>
+            </div>
+            <div nz-col nzSpan="24">
+                <app-filters (shareID)="handleProduct($event)"></app-filters>
+            </div>
+            <div nz-col nzSpan="24">
+                <app-cards [products]="products"></app-cards>
+            </div>
+        </div>
+    </div>
+</div>

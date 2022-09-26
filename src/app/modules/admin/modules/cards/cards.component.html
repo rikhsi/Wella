@@ -1,0 +1,221 @@
+<div class="cards__container">
+    <nz-modal [nzFooter]="null" [nzCentered]="true" [nzAutofocus]="null" [(nzVisible)]="isVisible"  (nzOnCancel)="handleCancel()" [nzClosable]="false">
+        <ng-container *nzModalContent>
+            <div nz-row [nzGutter]="[0,40]">
+                <div nz-col nzSpan="24">
+                    <div nz-row nzJustify="space-between" nzAlign="middle">
+                        <div nz-col>
+                            <span class="ant-modal-title">Поделиться ссылкой этого товара</span>
+                        </div>
+                    </div>             
+                </div>
+                <div nz-col nzSpan="24">
+                    <div class="ant-modal-link">
+                        <span>{{copy}}</span>
+                    </div>           
+                </div>
+                <div nz-col nzSpan="24">
+                    <div nz-row nzJustify="end" [nzGutter]="24">
+                        <div nz-col>
+                            <button nz-button nzType="primary" class="ant-modal-cancel" (click)="handleCancel()">Отменить</button>
+                        </div>
+                        <div nz-col>
+                            <button nz-button nzType="primary" ngxClipboard [cbContent]="copy" class="ant-modal-share" (click)="handleOk()">Копировать ссылку</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-container>
+    </nz-modal>
+    <div nz-row [nzGutter]="[0,80]">
+        <div nz-col nzSpan="24">
+            <div nz-row [nzGutter]="[0,40]">
+                <div nz-col nzSpan="24" class="tab">
+                    <nz-tabset [nzType]="'card'">
+                        <nz-tab nzTitle="Все товары" (nzClick)="tabsControle(1)">
+                            <nz-table
+                            #allTable
+                            [nzData]="allCards"
+                            [nzLoading]="tableLoading"
+                            [nzPageSize]="10"
+                            [nzTableLayout]="'fixed'"
+                            >
+                                <thead>
+                                    <tr>
+                                        <th [nzWidth]="'6%'" *ngIf="showTableRows">
+                                            <button nz-button nzType="primary" [disabled]="setOfCollection.size < 8 || setOfCollection.size > 8" (click)="setNewCollection()">
+                                                <span nz-icon nzType="check"></span>
+                                                <span>{{ setOfCollection.size }}</span>
+                                            </button>
+                                        </th>
+                                        <th [nzWidth]="'6%'" *ngIf="showTableRows">
+                                            <button nz-button nzType="primary" [disabled]="setOfBestsellers.size < 8 || setOfBestsellers.size > 8" (click)="setNewBestsellers()">
+                                                <span nz-icon nzType="check"></span>
+                                                <span>{{ setOfBestsellers.size }}</span>
+                                            </button>
+                                        </th>
+                                        <th [nzWidth]="'4%'">ID</th>
+                                        <th [nzWidth]="'6%'">Фото</th>
+                                        <th [nzWidth]="'10%'">Название</th>
+                                        <th>Описание</th>
+                                        <th>Жанр</th>
+                                        <th>Бренд</th>
+                                        <th>Страна</th>
+                                        <th>Размеры</th>
+                                        <th>Цвет</th>
+                                        <th [nzWidth]="'10%'">Цена</th>
+                                        <th>В наличии</th>
+                                        <th>Дата</th>
+                                        <th [nzWidth]="'8%'" *ngIf="!showTableRows">Инструменты</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let data of allTable.data">
+                                        <td [nzChecked]="setOfCollection.has(data.id)" (nzCheckedChange)="isCollectionChecked(data.id, $event)" *ngIf="showTableRows"></td>
+                                        <td [nzChecked]="setOfBestsellers.has(data.id)" (nzCheckedChange)="isBestsellersChecked(data.id, $event)" *ngIf="showTableRows"></td>
+                                        <td>{{data.id}}</td>
+                                        <td>
+                                            <div class="cards__img">
+                                                <img nz-image [nzSrc]="data.photos[0]" [nzFallback]="fallback" onerror="this.parentNode.removeChild(this)">
+                                            </div>
+                                        </td>
+                                        <td [nzEllipsis]="true">{{data.title}}</td>
+                                        <td [nzEllipsis]="true">{{data.description}}</td>
+                                        <td [nzEllipsis]="true">{{data.categories[0].title}}</td>
+                                        <td [nzEllipsis]="true">{{data.brand}}</td>
+                                        <td [nzEllipsis]="true">{{data.country}}</td>
+                                        <td [nzEllipsis]="true">{{data.size}}</td>
+                                        <td [nzEllipsis]="true">{{data.color}}</td>
+                                        <td [nzEllipsis]="true">{{data.price}}</td>
+                                        <td *ngIf="data.available">Есть</td>
+                                        <td *ngIf="!data.available">Нет</td>
+                                        <td>{{ data.created_at }}</td>
+                                        <td *ngIf="!showTableRows">
+                                            <div nz-row nzJustify="space-between">
+                                                <div nz-col>
+                                                    <button title="Удалить" class="button" (click)="isActive(data.isCollection,data.isBestSeller,data.id)">
+                                                        <span nz-icon nzType="delete" nzTheme="outline"></span>
+                                                    </button>
+                                                </div>
+                                                <div nz-col>
+                                                    <button title="Поделиться" class="button" (click)="showModal(data.id)">
+                                                        <span nz-icon nzType="share-alt" nzTheme="outline"></span>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </nz-table>      
+                        </nz-tab>
+                        <nz-tab nzTitle="Новые коллекции" (nzClick)="tabsControle(2)">
+                            <nz-table
+                            #collectionTable
+                            [nzData]="newCollection"
+                            [nzLoading]="tableLoading"
+                            [nzPageSize]="8"
+                            [nzShowPagination]="false"
+                            [nzTableLayout]="'fixed'"
+                            >
+                            <thead>
+                                <tr>
+                                    <th [nzWidth]="'4%'">ID</th>
+                                    <th [nzWidth]="'6%'">Фото</th>
+                                    <th [nzWidth]="'10%'">Название</th>
+                                    <th>Описание</th>
+                                    <th>Жанр</th>
+                                    <th>Бренд</th>
+                                    <th>Страна</th>
+                                    <th>Размеры</th>
+                                    <th>Цвет</th>
+                                    <th>Цена</th>
+                                    <th>В наличии</th>
+                                    <th>Дата</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let data of collectionTable.data">
+                                    <td>{{data.id}}</td>
+                                    <td>
+                                        <div class="cards__img">
+                                            <img nz-image [nzSrc]="data.photos[0]" [nzFallback]="fallback" onerror="this.parentNode.removeChild(this)">
+                                        </div>
+                                    </td>
+                                    <td [nzEllipsis]="true">{{data.title}}</td>
+                                    <td [nzEllipsis]="true">{{data.description}}</td>
+                                    <td [nzEllipsis]="true">{{data.categories[0].title}}</td>
+                                    <td [nzEllipsis]="true">{{data.brand}}</td>
+                                    <td [nzEllipsis]="true">{{data.country}}</td>
+                                    <td [nzEllipsis]="true">{{data.size}}</td>
+                                    <td [nzEllipsis]="true">{{data.color}}</td>
+                                    <td [nzEllipsis]="true">{{data.price}}</td>
+                                    <td *ngIf="data.available">Есть</td>
+                                    <td *ngIf="!data.available">Нет</td>
+                                    <td>{{ data.created_at}}</td>
+                                </tr>
+                            </tbody>
+                        </nz-table>      
+                        </nz-tab>
+                        <nz-tab nzTitle="Бестселлеры" (nzClick)="tabsControle(3)">
+                            <nz-table
+                            #bestsellersTable
+                            [nzData]="bestsellers"
+                            [nzLoading]="tableLoading"
+                            [nzPageSize]="8"
+                            [nzShowPagination]="false"
+                            [nzTableLayout]="'fixed'"
+                            >
+                                <thead>
+                                    <tr>
+                                        <th [nzWidth]="'4%'">ID</th>
+                                        <th [nzWidth]="'6%'">Фото</th>
+                                        <th [nzWidth]="'10%'">Название</th>
+                                        <th>Описание</th>
+                                        <th>Жанр</th>
+                                        <th>Бренд</th>
+                                        <th>Страна</th>
+                                        <th>Размеры</th>
+                                        <th>Цвет</th>
+                                        <th>Цена</th>
+                                        <th>В наличии</th>
+                                        <th>Дата</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let data of bestsellersTable.data">
+                                        <td>{{data.id}}</td>
+                                        <td>
+                                            <div class="cards__img">
+                                                <img nz-image [nzSrc]="data.photos[0]" [nzFallback]="fallback" onerror="this.parentNode.removeChild(this)">
+                                            </div>
+                                        </td>
+                                        <td [nzEllipsis]="true">{{data.title}}</td>
+                                        <td [nzEllipsis]="true">{{data.description}}</td>
+                                        <td [nzEllipsis]="true">{{data.categories[0].title}}</td>
+                                        <td [nzEllipsis]="true">{{data.brand}}</td>
+                                        <td [nzEllipsis]="true">{{data.country}}</td>
+                                        <td [nzEllipsis]="true">{{data.size}}</td>
+                                        <td [nzEllipsis]="true">{{data.color}}</td>
+                                        <td [nzEllipsis]="true">{{data.price}}</td>
+                                        <td *ngIf="data.available">Есть</td>
+                                        <td *ngIf="!data.available">Нет</td>
+                                        <td>{{ data.created_at }}</td>
+                                    </tr>
+                                </tbody>
+                            </nz-table>      
+                        </nz-tab>
+                    </nz-tabset>
+                    <div nz-row class="tab__buttons" [nzGutter]="20" nzAlign="middle">
+                        <div nz-col *ngIf="tabsIndex === 1">
+                            <span nz-icon title="Добавить в активные" nzType="folder-add" nzTheme="outline" class="tab__add" (click)="showCheckbox()"></span>
+                        </div>
+                        <div nz-col>
+                            <span nz-icon title="Обновить" nzType="reload" nzTheme="outline" class="tab__reload" (click)="getProducts(); getActiveCollections(); getActiveBestsellers()"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

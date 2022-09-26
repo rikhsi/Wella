@@ -1,0 +1,62 @@
+<div nz-row nzAlign="middle" class="header__wrapper">
+    <div nz-col nzSpan="24" class="header__container">
+        <div (click)="headerRoute()" class="header__logo">
+            <h1 role="button">WELLA</h1>
+        </div>
+        <div class="header__body">
+            <div nz-row nzJustify="start" nzAlign="middle">
+                <div nz-col nzSpan="12">
+                    <div nz-row nzJustify="start">
+                        <div nz-col>
+                            <div nz-row [nzGutter]="[{xl:20,lg:20,md:15,sm:15,xs:15},0]" nzAlign="middle">
+                                <div nz-col>
+                                    <div nz-button nzType="primary" (click)="catalogRoute()" [ngClass]="{header__page: isCatalogPage}"  class="header__catalog">
+                                        <div class="header__catalog-burger" *ngIf="!isCatalogPage">
+                                            <span></span>
+                                            <span></span>
+                                            <span></span>                                   
+                                        </div>     
+                                        <span nz-icon nzType="close" nzTheme="outline"  style="font-size: 16px; color: white;" *ngIf="isCatalogPage"></span>                                                                              
+                                        <span class="header__catalog-text">{{'header.catalog' | translate}}</span>
+                                    </div>
+                                </div>
+                                <div nz-col>
+                                    <a href="tel:+998931896720" nz-row nzAlign="middle" [nzGutter]="8" class="header__info">
+                                        <div nz-col>
+                                            <svg width="18" height="20" viewBox="0 0 18 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M2.13629 1.95968L2.25671 1.82588C2.65395 1.3845 3.34605 1.3845 3.74329 1.82588L6.39793 4.77548C6.74021 5.15579 6.74021 5.7331 6.39793 6.11341L5.25661 7.38154C5.10065 7.55483 5.06174 7.80387 5.15742 8.01648L5.29965 8.33256C6.40362 10.7858 8.27041 12.8169 10.6221 14.1234C10.8432 14.2462 11.12 14.2 11.2892 14.012L12.2567 12.937C12.6539 12.4956 13.3461 12.4956 13.7433 12.937L16.4607 15.9564C16.7673 16.297 16.7673 16.8141 16.4607 17.1547C14.5285 19.3017 11.2447 19.5373 9.02578 17.6882L7.51076 16.4256C5.84529 15.0377 4.38441 13.4213 3.17149 11.6244L1.62296 9.33031C0.0816789 7.04693 0.293371 4.00737 2.13629 1.95968Z" stroke="black"/>
+                                            </svg>                                      
+                                        </div>
+                                        <div nz-col class="header__info-text">
+                                            <span >+998 (93) 189 67 20</span>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div nz-col nzFlex="auto">
+                    <div nz-row nzAlign="middle">
+                        <div nz-col nzFlex="auto">
+                            <div nz-row nzJustify="end">
+                                <div nz-col>
+                                    <div nz-row [nzGutter]="16">
+                                        <div nz-col>
+                                            <button class="header__button" (click)="language('ru')" [ngClass]="{header__active: currentLanguage === 'ru'}">Рус</button>
+                                        </div>
+                                        <div nz-col>
+                                            <button class="header__button" (click)="language('uz')" [ngClass]="{header__active: currentLanguage === 'uz'}">Uzb</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>               
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

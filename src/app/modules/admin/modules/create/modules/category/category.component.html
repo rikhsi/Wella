@@ -1,0 +1,30 @@
+<div class="filters__container">
+    <div nz-row [nzGutter]="[0,50]">
+        <div nz-col nzSpan="24">
+            <p class="filters__title">Введите данные чтобы создать категорию</p>
+        </div>
+        <div nz-col nzSpan="24">
+            <form [formGroup]="newFilter" (ngSubmit)="submitForm()">
+                <div nz-row [nzGutter]="[20,20]">
+                    <div nz-col nzSpan="12">
+                        <div nz-row>
+                            <nz-form-control nzSpan="24" nzHasFeedback>
+                                <input formControlName="title" nz-input placeholder="Введите название категории" class="filters__form__input"/>
+                            </nz-form-control>
+                        </div>                     
+                    </div>
+                    <div nz-col nzSpan="24">
+                        <div nz-row [nzGutter]="20">
+                            <div nz-col>
+                                <button nz-button nzType="primary"  class="filters__form__buttons filters__form__buttons__create">Создать</button>
+                            </div>
+                            <div nz-col>
+                                <button nz-button nzType="primary" (click)="this.resetForm($event)" class="filters__form__buttons filters__form__buttons__reset">Очистить</button>
+                            </div>
+                        </div>               
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

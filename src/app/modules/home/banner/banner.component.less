@@ -1,0 +1,64 @@
+@import '../../../styles/colors.less';
+@import '../../../styles/img.animation.less';
+
+.banner {
+    &__wrapper {
+        padding: 0 20px;
+    }
+
+    &__img {
+        width: 100%;
+        height: 100%;
+        border-radius: 72px 0px;
+        overflow: hidden;
+        .imgAnimation();
+
+        img {
+            pointer-events: none;
+            object-fit: cover;
+        }
+    }
+
+    &__swiper {
+        height: 540px;
+
+        @media (max-width:767px) {
+            height: 580px;
+        }
+    }
+
+    &__pagination {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    &__buttons {
+        background-color: inherit;
+        transition: 0.3s;
+        cursor: pointer;
+
+        &:hover {
+            transform: scale(110%);
+            transition: 0.3s;
+
+            svg path {
+                fill: black;
+                transition: 0.3s;
+            }
+        }
+
+        @media (max-width:575px) {
+            svg {
+                width: 17px;
+                height: 17px;
+            }
+        }
+
+        &-rotate {
+            svg {
+                transform: rotate(180deg);
+            }
+        }
+    }
+}

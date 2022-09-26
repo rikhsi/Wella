@@ -1,0 +1,35 @@
+<div class="banner__wrapper">
+    <div nz-row  nzJustify="center" [nzGutter]="[0,{xl:40,lg:40,md:30,sm:30,xs:20}]">
+        <div nz-col nzSpan="24">
+            <swiper [config]="config" class="banner__swiper">
+                <ng-template swiperSlide *ngFor="let banner of banners">
+                    <div class="banner__img ">
+                        <img nz-image [nzSrc]="banner.photo" [nzFallback]="fallback" onerror="this.parentNode.removeChild(this)">
+                    </div>
+                </ng-template>
+            </swiper>
+        </div>
+        <div nz-col>
+            <div nz-row nzAlign="middle" [nzGutter]="[{xl:24,lg:24,md:24,sm:24,xs:10},0]">
+                <div nz-col>
+                    <button nz-row nzAlign="middle"  class="banner__buttons" (click)="swipePrev()">
+                        <svg nz-col width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M8.12133 10.5H21V13.5H8.12133L13.0607 18.4393L10.9394 20.5606L2.37869 12L10.9394 3.43933L13.0607 5.56065L8.12133 10.5Z" fill="#999999"/>
+                        </svg>  
+                    </button>
+                </div>
+                <div nz-col>
+                    <div class="banner__pagination"></div>
+                </div>
+                <div nz-col>
+                    <button nz-row nzAlign="middle" class="banner__buttons banner__buttons-rotate" (click)="swipeNext()">
+                        <svg nz-col width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M8.12133 10.5H21V13.5H8.12133L13.0607 18.4393L10.9394 20.5606L2.37869 12L10.9394 3.43933L13.0607 5.56065L8.12133 10.5Z" fill="#999999"/>
+                        </svg>  
+                    </button>                   
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

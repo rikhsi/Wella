@@ -1,0 +1,37 @@
+@import './text.animation.less';
+@import './colors.less';
+@import './textStyles.less';
+
+.logo() {
+    transition: 0.3s;
+    .text(400, 32px, 32px, @black);
+    .textAnimation();
+    cursor: pointer;
+
+    &:hover {
+        transition: 0.3s;
+        transform: scale(120%);
+    }
+
+    &:active {
+        transition: 0.3s;
+        transform: scale(90%);
+    }
+
+    @media (max-width:991px) {
+        &:hover {
+            transition: none;
+            transform: none;
+        }
+
+        &:active {
+            transition: 0.3s;
+            transform: scale(120%);
+        }
+    }
+
+    @media (max-width:575px) {
+        font-size: 24px;
+        line-height: 20px;
+    }
+}

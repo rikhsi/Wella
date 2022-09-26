@@ -1,0 +1,47 @@
+<div class="form__wrapper">
+    <div class="form__container">
+        <div nz-row [nzGutter]="[0,{xl:14,lg:14,md:20,sm:36,xs:36}]">
+            <div nz-col nzXl="22"  nzXs="24">
+                <h1 class="form__title">
+                    {{'form.title' | translate}}
+                </h1>
+            </div>
+            <div nz-col nzSpan="24">
+                <div nz-row>
+                    <div nz-col nzSpan="24">
+                        <form nz-form id="form" [formGroup]="newOrder" (ngSubmit)="submitForm($event)" class="form__form">
+                            <nz-form-item class="form__form-item">
+                                <nz-form-control nzErrorTip="{{'form.clientNameError' | translate}}">
+                                    <nz-input-group>
+                                        <input type="text" nz-input name="clientName" formControlName="clientName" placeholder="{{'form.clientName' | translate}}" class="form__input"/>
+                                    </nz-input-group>
+                                </nz-form-control>
+                            </nz-form-item>
+                            <nz-form-item class="form__form-item">
+                                <nz-form-control nzErrorTip="{{'form.clientNumberError' | translate}}">
+                                    <nz-input-group>
+                                        <input type="text" nz-input name="clientNumber" formControlName="clientNumber" placeholder="{{'form.clientNumber' | translate}}" mask="+000(00) 000-00-00" [showMaskTyped]="false" class="form__input"/>
+                                    </nz-input-group>
+                                </nz-form-control>
+                            </nz-form-item>
+                            <button nz-button [nzType]="'primary'" class="form__button form__hidden">{{'form.button' | translate}}</button>
+                        </form>
+                    </div>
+                    <div nz-col nzSpan="24">
+                        <div nz-row [nzGutter]="[0,24]">
+                            <div nz-col>
+                                <label nz-checkbox [(ngModel)]="checked" (click)="check()">
+                                    <span class="form__check" (click)="check()">{{'form.check' | translate}}</span>
+                                </label>
+                            </div>
+                            <div nz-col nzMd="0" nzXs="24">
+                                <button nz-button [nzType]="'primary'" type="submit" form="form" class="form__button">{{'form.button' | translate}}</button>
+                            </div>
+                        </div>
+                    </div>
+                    <app-alert [isVisible]="isAlertVisible" (closeAlert)="isAlertShow()"></app-alert>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

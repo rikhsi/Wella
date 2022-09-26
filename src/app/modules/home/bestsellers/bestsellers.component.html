@@ -1,0 +1,36 @@
+<div class="best__wrapper">
+    <div nz-row [nzGutter]="[0,{xl:72,lg:72,md:36,sm:36,xs:18}]">
+        <div nz-col nzSpan="24">
+            <div nz-row nzJustify="space-between" nzAlign="middle" [nzGutter]="20">
+                <h1 nz-col class="best__title">{{'bestsellers.title' | translate}}</h1>
+                <div nz-col (click)="navigate()" class="best__catalog">
+                    <div nz-row [nzGutter]="{xl:20,lg:20,md:15,sm:15,xs:10}" nzAlign="middle">
+                        <div nz-col>
+                            <button class="best__catalog-title">{{'catalog.title' | translate}}</button>
+                        </div>
+                        <div nz-col>
+                            <svg width="28" height="22" viewBox="0 0 28 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M27 11L27.3536 10.6464L27.7071 11L27.3536 11.3536L27 11ZM0.75 11.5C0.473858 11.5 0.25 11.2761 0.25 11C0.25 10.7239 0.473858 10.5 0.75 10.5V11.5ZM16.8536 0.146447L27.3536 10.6464L26.6464 11.3536L16.1464 0.853553L16.8536 0.146447ZM27.3536 11.3536L16.8536 21.8536L16.1464 21.1464L26.6464 10.6464L27.3536 11.3536ZM27 11.5H0.75V10.5H27V11.5Z" fill="#888888"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div nz-col nzXl="24" nzXs="0">
+            <div nz-row nzJustify="space-between" [nzGutter]="[20,50]">
+                <div nz-col nzSpan="6" *ngFor="let product of products">
+                    <app-product [product]="product"></app-product>
+                </div>          
+            </div>
+        </div>
+        <div nz-col nzXl="0" nzXs="24">
+            <swiper [config]="config" class="best__swiper">
+                <ng-template swiperSlide *ngFor="let product of products">
+                    <app-product [product]="product"></app-product>
+                </ng-template>
+            </swiper>
+        </div>
+    </div>
+</div>
+

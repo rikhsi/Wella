@@ -1,0 +1,84 @@
+@import '../../styles/textStyles.less';
+@import '../../styles/colors.less';
+@import '../../styles/img.animation.less';
+
+.product {
+    transition: 0.3s;
+    cursor: pointer;
+
+    &:hover {
+        transition: 0.3s;
+        transform: scale(102%);
+
+        .card__img {
+            border-radius: 10px;
+        }
+
+        @media (max-width: 1199px) {
+            transform: none;
+        }
+    }
+
+    &:active {
+        transition: 0.3s;
+        transform: scale(90%);
+    }
+
+    &__img {
+        position: relative;
+        z-index: 1000;
+        width: 100%;
+        height: 392px;
+        transition: 0.3s;
+        overflow: hidden;
+        pointer-events: none;
+        .imgAnimation();
+
+        @media (max-width:991px) {
+            height: 300px;
+        }
+
+        @media (max-width:767px) {
+            height: 392px;
+        }
+
+        @media (max-width:650px) {
+            height: 350px;
+        }
+
+        @media (max-width:575px) {
+            height: 392px;
+        }
+
+        img {
+            object-fit: cover;
+        }
+    }
+
+    &__title {
+        .text(600, 32px, 36px, @black);
+
+        @media (max-width:991px) {
+            font-size: 26px;
+            line-height: 20px;
+        }
+
+        @media (max-width:450px) {
+            font-size: 26px;
+            line-height: 20px;
+        }
+    }
+
+    &__info {
+        .text(400, 24px, 33px, @cardGrey);
+
+        @media (max-width:991px) {
+            font-size: 18px;
+            line-height: 28px;
+        }
+
+        @media (max-width:450px) {
+            font-size: 20px;
+        }
+    }
+}

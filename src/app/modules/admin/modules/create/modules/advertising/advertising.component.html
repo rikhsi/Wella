@@ -1,0 +1,80 @@
+<div class="add__container">
+    <div nz-row [nzGutter]="[24,50]">
+        <div nz-col nzSpan="12">
+            <p class="add__title">Введите данные чтобы создать рекламный баннер</p>
+        </div>
+        <div nz-col nzSpan="12">
+            <p class="add__title">Введите данные чтобы создать партнёра</p>
+        </div>
+        <div nz-col nzSpan="24">
+            <div nz-row [nzGutter]="[24]">
+                <div nz-col nzSpan="12">
+                    <form [formGroup]="newBanner">
+                        <div nz-row [nzGutter]="[20,20]">
+                            <div nz-col nzSpan="24">
+                                <div nz-row>
+                                    <nz-form-control nzSpan="24" nzHasFeedback>
+                                        <input formControlName="title" nz-input placeholder="Введите название товара" class="add__form__input"/>
+                                    </nz-form-control>
+                                </div>                     
+                            </div>
+                            <div nz-col nzSpan="24" class="add__upload">
+                                <div nz-row>
+                                    <nz-upload [(nzFileList)]="bannerPhotoList" [nzBeforeUpload]="beforeBannerUpload">
+                                        <button nz-button [disabled]="this.bannerPhotoList.length > 0">
+                                            <span nz-icon nzType="upload"></span>
+                                            Выберите файл
+                                        </button>
+                                    </nz-upload>
+                                </div>                           
+                            </div>
+                            <div nz-col nzSpan="24">
+                                <div nz-row [nzGutter]="20">
+                                    <div nz-col>
+                                        <button nz-button [nzLoading]="loadingBanner" nzType="primary"  class="add__form__buttons add__form__buttons__create" (click)="bannerSubmit()">Создать</button>
+                                    </div>
+                                    <div nz-col>
+                                        <button nz-button nzType="primary" (click)="resetBanner($event)" class="add__form__buttons add__form__buttons__reset">Очистить</button>
+                                    </div>
+                                </div>               
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div nz-col nzSpan="12">
+                    <form [formGroup]="newPartner">
+                        <div nz-row [nzGutter]="[20,20]">
+                            <div nz-col nzSpan="24">
+                                <div nz-row>
+                                    <nz-form-control nzSpan="24" nzHasFeedback>
+                                        <input formControlName="title" nz-input placeholder="Введите название товара" class="add__form__input"/>
+                                    </nz-form-control>
+                                </div>                     
+                            </div>
+                            <div nz-col nzSpan="24" class="add__upload">
+                                <div nz-row>
+                                    <nz-upload [(nzFileList)]="partnerPhotoList" [nzBeforeUpload]="beforPartnerUpload">
+                                        <button nz-button [disabled]="this.partnerPhotoList.length > 0">
+                                            <span nz-icon nzType="upload"></span>
+                                            Выберите файл
+                                        </button>
+                                    </nz-upload>
+                                </div>                           
+                            </div>
+                            <div nz-col nzSpan="24">
+                                <div nz-row [nzGutter]="20">
+                                    <div nz-col>
+                                        <button nz-button [nzLoading]="loadingPartner" nzType="primary"  class="add__form__buttons add__form__buttons__create" (click)="partnerSubmit()">Создать</button>
+                                    </div>
+                                    <div nz-col>
+                                        <button nz-button nzType="primary" (click)="resetPartner($event)" class="add__form__buttons add__form__buttons__reset">Очистить</button>
+                                    </div>
+                                </div>               
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

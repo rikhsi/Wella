@@ -1,0 +1,75 @@
+@import '../../../../styles/textStyles.less';
+@import '../../../../styles/img.animation.less';
+
+
+.button {
+    font-size: 18px;
+    background: inherit;
+
+    &:hover {
+        color: red;
+        transform: scale(119%);
+    }
+}
+
+.partners {
+    &__container {
+        position: relative;
+        padding: 20px 20px 0 20px;
+        height: 100%;
+        overflow-y: scroll;
+    }
+
+    &__img {
+        width: 100px;
+        height: 70px;
+        .imgAnimation();
+
+        img {
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            object-fit: fill;
+        }
+    }
+}
+
+.alert {
+    position: fixed;
+    z-index: 1000;
+    top: 10%;
+    right: 35px;
+    width: 50%;
+}
+
+.tab {
+    position: relative;
+    font-size: 24px;
+
+    &__buttons {
+        position: absolute;
+        margin-top: 25px;
+        top: 0;
+        right: 0;
+    }
+
+    &__reload {
+        cursor: pointer;
+
+        &:hover {
+            color: green;
+        }
+    }
+
+    &__add {
+        cursor: pointer;
+
+        &:hover {
+            color: green;
+        }
+    }
+}
+
+[nz-button] {
+    width: 100%;
+}

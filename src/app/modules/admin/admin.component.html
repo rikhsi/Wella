@@ -1,0 +1,43 @@
+<nz-layout class="admin__layout">
+    <nz-header nz-row nzJustify="end" class="admin__header">
+        <ul nz-col nz-menu nzTheme="dark" nzMode="horizontal">
+            <li nz-menu-item nz-row [nzGutter]="10" [routerLink]="['create/goods']">
+                <span nz-col>Создать товар</span>
+                <span nz-col nz-icon nzType="book"></span>
+            </li>
+            <li nz-menu-item nz-row [nzGutter]="10" [routerLink]="['create/advertising']">
+                <span nz-col>Создать рекламу</span>
+                <span nz-col nz-icon nzType="global"></span>
+            </li>
+            <li nz-menu-item nz-row [nzGutter]="10" [routerLink]="['create/category']">
+                <span nz-col>Создать категорию</span>
+                <span nz-col nz-icon nzType="sort-descending"></span>
+            </li>
+        </ul>
+    </nz-header>
+    <nz-layout>
+        <nz-sider [nzWidth]="'auto'" nzTheme="dark" class="admin__sider">
+            <ul nz-menu nzMode="inline" nzTheme="dark" class="admin__sider-menu">
+                <li nz-menu-item  [nzSelected]="page.isShow" *ngFor="let page of pages" (click)="navigateToPage(page.route)">
+                    <span nz-icon [nzType]="page.type" class="admin__sider-menu-icon"></span>
+                    <span class="admin__sider-li-name">{{page.name}}</span>
+                </li>  
+            </ul>
+            <ul nz-row>
+                <div role="link" nz-col nzSpan="24" class="admin__quit" (click)="tableShowConfirm()">
+                    <div nz-row nzAlign="middle" [nzGutter]="10">
+                        <div nz-col>
+                            <span nz-icon nzType="logout" nzTheme="outline" style="font-size: 25px;"></span>
+                        </div>
+                        <div nz-col>
+                            <span role="button" class="admin__quit-name">Выход</span>
+                        </div>
+                    </div>
+                </div>      
+            </ul>   
+        </nz-sider>
+        <div class="admin__body">
+            <router-outlet></router-outlet>
+        </div>
+    </nz-layout>
+</nz-layout>

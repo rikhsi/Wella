@@ -1,0 +1,47 @@
+<div class="gallery__wrapper">
+    <div nz-row [nzGutter]="[0,{xl:40,lg:40,md:30,sm:20,xs:20}]">
+        <div nz-col nzSpan="24">
+            <div nz-row nzAlign="middle" [nzGutter]="{xl:50,lg:20,md:0,sm:0,xs:0}" nzJustify="center">
+                <button nz-col (click)="swipePrev()" class="gallery__button">
+                    <svg width="27" height="50" viewBox="0 0 27 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M2 25L1.2929 25.7071L0.585789 25L1.2929 24.2929L2 25ZM25.2929 49.7071L1.2929 25.7071L2.70711 24.2929L26.7071 48.2929L25.2929 49.7071ZM1.2929 24.2929L25.2929 0.292894L26.7071 1.70711L2.70711 25.7071L1.2929 24.2929Z" fill="black"/>
+                    </svg>  
+                </button>
+                <div nz-col nzXl="20" nzLg="21" nzXs="24">
+                    <swiper [config]="config" class="gallery__swiper">
+                        <ng-template swiperSlide *ngFor="let photo of galleryList">
+                            <div nz-row [nzGutter]="[20,16]">
+                                <div nz-col nzSm="12" nzXs="24" class="gallery__big">
+                                    <div class="gallery__img">
+                                        <img nz-image [nzSrc]="photo[0]" [nzFallback]="fallback" onerror="this.parentNode.removeChild(this)">
+                                    </div>                            
+                                </div>
+                                <div nz-col nzSm="12" nzXs="24">
+                                    <div nz-row [nzGutter]="[20,20]">
+                                        <div nz-col nzFlex="50%" *ngFor="let photo of galleryList | slice:1" class="gallery__small">
+                                            <div class="gallery__img">
+                                                <img nz-image [nzSrc]="photo" [nzFallback]="fallback" onerror="this.parentNode.removeChild(this)">
+                                            </div>  
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ng-template>
+                    </swiper>
+                </div>
+                <button nz-col (click)="swipeNext()" class="gallery__button">
+                    <svg width="27" height="50" viewBox="0 0 27 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M25 25L25.7071 25.7071L26.4142 25L25.7071 24.2929L25 25ZM1.70711 49.7071L25.7071 25.7071L24.2929 24.2929L0.292892 48.2929L1.70711 49.7071ZM25.7071 24.2929L1.7071 0.292894L0.292888 1.70711L24.2929 25.7071L25.7071 24.2929Z" fill="black"/>
+                    </svg>   
+                </button>
+            </div>
+        </div>
+        <div nz-col nzLg="0" nzXs="24">
+            <div nz-row nzJustify="center">
+                <div nz-col>
+                    <div class="gallery__pagination"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

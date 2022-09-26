@@ -1,0 +1,42 @@
+@import '/src//app/styles/textStyles.less';
+
+.filters {
+    &__container {
+        min-height: 100%;
+        padding: 40px 20px;
+    }
+
+    &__title {
+        .text(700, 20px, 10px, black);
+    }
+
+    &__form {
+        &__input {
+            display: inline-block;
+            width: 100%;
+            height: 50px;
+            padding: 0 10px;
+        }
+
+        &__buttons {
+            width: 150px;
+            height: 50px;
+            padding: 0 10px;
+            border: none;
+
+            &__create {
+                background-color: rgb(61, 86, 189);
+
+                &:disabled {
+                    color: white;
+                    opacity: 0.7;
+                    background-color: grey;
+                }
+            }
+
+            &__reset {
+                background-color: rgb(207, 74, 74);
+            }
+        }
+    }
+}

@@ -1,0 +1,88 @@
+@import '../../styles/textStyles.less';
+@import '../../styles/colors.less';
+@import '../../styles/animation.less';
+
+.modal {
+    &__container {
+        max-width: 889px;
+        padding: 48px;
+
+        @media (max-width:1199px) {
+            max-width: 678px;
+        }
+
+        @media (max-width:767px) {
+            max-width: 328px;
+            padding: 24px 16px;
+            border-radius: 24px;
+        }
+    }
+
+    &__title {
+        width: 100%;
+        display: inline-block;
+        text-align: center;
+        .text(700, 36px, 120%, @black);
+
+        @media (max-width:1199px) {
+            font-size: 26px;
+        }
+
+        @media (max-width:767px) {
+            font-size: 18px;
+        }
+    }
+
+    &__input {
+        width: 100%;
+        height: 65px;
+        padding: 16px;
+        border: 1px solid @grey;
+        border-radius: 16px;
+        background: @white;
+        .text(400, 24px, 33px, @black);
+
+        @media (max-width:767px) {
+            height: 54px;
+            font-size: 16px;
+        }
+
+        &::placeholder {
+            text-align: center;
+            .text(400, 24px, 33px, @grey);
+
+            @media (max-width: 767px) {
+                font-size: 16px;
+            }
+        }
+
+        &:focus {
+            outline: none !important;
+            border: 3px solid @grey;
+        }
+    }
+
+    &__button {
+        width: 100%;
+        height: 65px;
+        border-radius: 36px;
+        background: @black;
+        transition: 0.3s;
+        .text(700, 24px, 33px, @white);
+        .animation();
+        animation-duration: 10s;
+
+        &:hover {
+            transform: scale(102%);
+            transition: 0.3s;
+        }
+
+        @media (max-width:767px) {
+            height: 54px;
+        }
+
+        @media (max-width:767px) {
+            font-size: 16px;
+        }
+    }
+}
