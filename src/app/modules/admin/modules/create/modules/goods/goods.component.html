@@ -60,9 +60,16 @@
                             <div nz-col nzSpan="24">
                                 <div nz-row>
                                     <nz-form-control nzSpan="24" nzHasFeedback>
-                                        <nz-select formControlName="category"  nzSize="large" nzPlaceHolder="Выберите категорию" class="goods__form__select">
-                                            <nz-option [nzValue]="option.title" [nzLabel]="option.title" *ngFor="let option of categories"></nz-option>
+                                        <nz-select
+                                            formControlName="category" 
+                                            [nzMaxTagCount]="3"
+                                            [nzMaxTagPlaceholder]="tagPlaceHolder"
+                                            nzMode="multiple"
+                                            nzPlaceHolder="Выберите категорию"
+                                        >
+                                            <nz-option *ngFor="let option of categories" [nzLabel]="option.title" [nzValue]="option.title"></nz-option>
                                         </nz-select>
+                                        <ng-template #tagPlaceHolder let-selectedList>еще {{ selectedList.length }}</ng-template>
                                     </nz-form-control>
                                 </div>                        
                             </div>
@@ -96,7 +103,7 @@
                     <div nz-col nzSpan="24">
                         <div nz-row [nzGutter]="20">
                             <div nz-col>
-                                <button nz-button nzType="primary"  class="goods__form__buttons goods__form__buttons__create" (click)="productsSubmit()">Создать</button>
+                                <button nz-button nzType="primary" [nzLoading]="uploading"  class="goods__form__buttons goods__form__buttons__create" (click)="productsSubmit()">Создать</button>
                             </div>
                             <div nz-col>
                                 <button nz-button nzType="primary" (click)="resetForm($event)" class="goods__form__buttons goods__form__buttons__reset">Очистить</button>

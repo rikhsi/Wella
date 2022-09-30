@@ -18,7 +18,7 @@ import { NzTabsModule } from 'ng-zorro-antd/tabs';
 import { NzTypographyModule } from 'ng-zorro-antd/typography';
 import { ClipboardModule } from 'ngx-clipboard';
 import { NzImageModule } from 'ng-zorro-antd/image';
-
+import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 
 @NgModule({
   declarations: [
@@ -41,7 +41,8 @@ import { NzImageModule } from 'ng-zorro-antd/image';
     NzTabsModule,
     NzTypographyModule,
     ClipboardModule,
-    NzImageModule
+    NzImageModule,
+    NzDropDownModule
   ]
 })
 export class CardsModule { }

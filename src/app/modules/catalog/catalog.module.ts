@@ -10,7 +10,8 @@ import { CardsComponent } from './cards/cards.component';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzListModule } from 'ng-zorro-antd/list';
 import { NzCardModule } from 'ng-zorro-antd/card';
-import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
+import { NzSpinModule } from 'ng-zorro-antd/spin';
+
 //swiperModule
 import { SwiperModule } from 'swiper/angular';
 
@@ -26,6 +27,7 @@ import { CatalogRoutingModule } from './catalog-routing.module';
 
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzEmptyModule } from 'ng-zorro-antd/empty';
 
 
 @NgModule({
@@ -44,9 +46,10 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
     TranslateModule,
     NzListModule,
     NzCardModule,
-    NzSkeletonModule,
     ScrollingModule,
-    NzButtonModule
+    NzButtonModule,
+    NzSpinModule,
+    NzEmptyModule
   ]
 })
 

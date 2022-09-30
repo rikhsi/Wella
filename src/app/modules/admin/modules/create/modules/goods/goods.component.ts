@@ -1,9 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzUploadFile } from 'ng-zorro-antd/upload';
 import { Subscription } from 'rxjs';
 import { Filter } from 'src/app/models/filter';
+import { AuthService } from 'src/app/services/api/auth.service';
 import { CategoriesService } from 'src/app/services/api/categories.service';
 import { ProductsService } from 'src/app/services/api/products.service';
 
@@ -22,7 +24,7 @@ export class GoodsComponent implements OnInit, OnDestroy {
   photoList: NzUploadFile[] = [];
   categories!: Filter[];
 
-  constructor(private fb: FormBuilder, private msg: NzMessageService, private productsService: ProductsService, private categoriesService: CategoriesService) {
+  constructor(private fb: FormBuilder, private msg: NzMessageService, private productsService: ProductsService, private categoriesService: CategoriesService, private auth: AuthService, private router: Router) {
     this.newGood = this.fb.group({
       title: [null, [Validators.required]],
       brand: [null, [Validators.required]],
@@ -57,7 +59,11 @@ export class GoodsComponent implements OnInit, OnDestroy {
   }
 
   productsSubmit(): void {
+    if (this.photoList.length === 0) {
+      this.msg.error('Выберите фото, максимум 10 фото');
+    }
     if (this.newGood.valid && this.photoList.length > 0) {
+      this.uploading = true;
       const formData = new FormData();
       this.setCategory();
       this.photoList.forEach((file: any) => {
@@ -66,12 +72,14 @@ export class GoodsComponent implements OnInit, OnDestroy {
       formData.append('data', JSON.stringify(this.newGood.value))
       this.addSub = this.productsService.add(formData).subscribe({
         next: () => {
-          this.uploading = true;
+          this.uploading = false;
           this.photoList = [];
           this.newGood.reset();
           this.msg.success('Товар успешно создан');
         },
         error: () => {
+          this.auth.removeToken();
+          this.router.navigate(['/login'])
           this.msg.error('Не удалось создать товар');
         }
       })
@@ -97,12 +105,17 @@ export class GoodsComponent implements OnInit, OnDestroy {
   }
 
   setCategory(): void {
-    this.categories.find(data => {
-      if (data.title === this.newGood.controls['category'].value) {
-        this.newGood.patchValue({
-          categories_id: [data.id]
-        })
-      }
+    let setId: number[] = [];
+    let categories: string[] = this.newGood.controls['category'].value;
+    this.categories.find(category => {
+      categories.map(item => {
+        if (category.title === item) {
+          setId.push(category.id)
+        }
+      })
+    })
+    this.newGood.patchValue({
+      categories_id: setId
     })
   }
 

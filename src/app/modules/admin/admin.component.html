@@ -1,17 +1,9 @@
 <nz-layout class="admin__layout">
     <nz-header nz-row nzJustify="end" class="admin__header">
         <ul nz-col nz-menu nzTheme="dark" nzMode="horizontal">
-            <li nz-menu-item nz-row [nzGutter]="10" [routerLink]="['create/goods']">
-                <span nz-col>Создать товар</span>
-                <span nz-col nz-icon nzType="book"></span>
-            </li>
-            <li nz-menu-item nz-row [nzGutter]="10" [routerLink]="['create/advertising']">
-                <span nz-col>Создать рекламу</span>
-                <span nz-col nz-icon nzType="global"></span>
-            </li>
-            <li nz-menu-item nz-row [nzGutter]="10" [routerLink]="['create/category']">
-                <span nz-col>Создать категорию</span>
-                <span nz-col nz-icon nzType="sort-descending"></span>
+            <li nz-menu-item nz-row [nzSelected]="data.selected" [nzGutter]="10" (click)="selectedNone(data.route)" *ngFor="let data of creates">
+                <span nz-col>{{data.name}}</span>
+                <span nz-col nz-icon nzType="{{data.type}}"></span>
             </li>
         </ul>
     </nz-header>

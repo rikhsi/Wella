@@ -6,20 +6,20 @@
         <div nz-col nzLg="24" nzXs="0">
             <div nz-row [nzGutter]="[{xl:24,lg:12,md:12,sm:12,xs:12},12]">
                 <div nz-col>
-                    <button class="nav__button"(click)="getCategoryProducts(0)">{{'catalog.button' | translate}}</button>
+                    <button class="nav__button"  [ngClass]="{nav__active: all}" (click)="getCategoryProducts(0); getCategories();">{{'catalog.button' | translate}}</button>
                 </div>
                 <div nz-col *ngFor="let button of buttons">
-                    <button class="nav__button" (click)="getCategoryProducts(button.id)">{{button.title}}</button>
+                    <button class="nav__button" [ngClass]="{nav__active: button.active}" (click)="getCategoryProducts(button.id)">{{button.title}}</button>
                 </div>
             </div>
         </div>
         <div nz-col nzLg="0" nzXs="24">
             <div nz-row [nzGutter]="[{xl:24,lg:12,md:12,sm:12,xs:12},0]" class="nav__media">
                 <div nz-col>
-                    <button class="nav__button">{{'catalog.button' | translate}}</button>
+                    <button class="nav__button"  [ngClass]="{nav__active: all}" (click)="getCategoryProducts(0); getCategories();">{{'catalog.button' | translate}}</button>
                 </div>
                 <div nz-col *ngFor="let button of buttons">
-                    <button class="nav__button">{{button.title}}</button>
+                    <button class="nav__button" [ngClass]="{nav__active: button.active}" (click)="getCategoryProducts(button.id)">{{button.title}}</button>
                 </div>
             </div>
         </div>

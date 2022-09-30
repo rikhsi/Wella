@@ -19,7 +19,8 @@ export class CatalogComponent implements OnInit {
       route: "/catalog",
     }
   ]
-
+  isLoading = false;
+  isEmpty = true;
   constructor(private navigation: NavigationService, private productsService: ProductsService, private categoriesService: CategoriesService) {
   }
 
@@ -32,17 +33,49 @@ export class CatalogComponent implements OnInit {
   }
 
   getAllProducts(): void {
+    this.isLoading = false;
     this.productsService.get().subscribe({
       next: data => {
-        this.products = data;
+        if (data.length === 0) {
+          this.isEmpty = true;
+          this.isLoading = false;
+        } else {
+          this.isEmpty = false;
+          this.products = data;
+        }
+        setTimeout(() => {
+          this.isLoading = true;
+        }, 500);
+      },
+      error: () => {
+        this.isEmpty = true;
+        setTimeout(() => {
+          this.isLoading = true;
+        }, 500);
       }
     })
   }
 
   getCategoryProducts(id: number) {
+    this.isLoading = false;
     this.categoriesService.getSingle(id).subscribe({
       next: data => {
-        this.products = data.dresses;
+        if (data.dresses.length === 0) {
+          this.isEmpty = true;
+          this.isLoading = false;
+        } else {
+          this.isEmpty = false;
+          this.products = data.dresses;
+        }
+        setTimeout(() => {
+          this.isLoading = true;
+        }, 500);
+      },
+      error: () => {
+        this.isEmpty = true;
+        setTimeout(() => {
+          this.isLoading = true;
+        }, 500);
       }
     })
   }

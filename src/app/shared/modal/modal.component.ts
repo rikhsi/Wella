@@ -15,14 +15,14 @@ export class ModalComponent implements OnInit {
 
   constructor(private fb: FormBuilder) {
     this.newOrder = this.fb.group({
-      clientName: [null, [Validators.required, Validators.minLength(3)]],
-      clientNumber: [null, [Validators.required]]
+      userName: [null, [Validators.required, Validators.minLength(3)]],
+      UserPhone: [null, [Validators.required]]
     });
   }
 
   submitForm(e: Event): void {
     if (this.newOrder.valid) {
-      emailjs.sendForm('service_fc6ryp3', 'template_p0v414j', e.target as HTMLFormElement, '2dBCb8RzDHxbz-KUD');
+      emailjs.sendForm('service_st0lwfs', 'template_5xrr7ha', e.target as HTMLFormElement, 'BfrhFFU6StfE7Pp7K');
       this.closeModal.emit();
       this.showAlert.emit();
       this.newOrder.reset();

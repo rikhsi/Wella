@@ -11,11 +11,11 @@ import { SwiperComponent } from 'swiper/angular';
 })
 
 export class DescriptionComponent implements OnInit {
-  fallback = null;
+  fallback = '../../../../assets/img/loading.jpg';
   thumbsSwiper = null;
   isVisible: boolean = false;
   isAlertVisible: boolean = false;
-  @Input() product!: Product | undefined;
+  @Input() product!: Product;
 
   configBig: SwiperOptions = {
     spaceBetween: 10,

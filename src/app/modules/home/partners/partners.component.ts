@@ -12,7 +12,7 @@ import { SwiperOptions } from 'swiper';
 })
 export class PartnersComponent implements OnInit, OnDestroy {
   getSub!: Subscription;
-
+  isLoading = false;
   config: SwiperOptions = {
     slidesPerView: 'auto',
     spaceBetween: 0,
@@ -54,6 +54,7 @@ export class PartnersComponent implements OnInit, OnDestroy {
     this.getSub = this.partnersService.get().subscribe({
       next: data => {
         this.partners = data;
+        this.isLoading = true;
       }
     })
   }

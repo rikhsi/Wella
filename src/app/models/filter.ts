@@ -4,5 +4,6 @@ export interface Filter {
     id: number,
     title: string,
     created_at?: string,
-    dresses: Product[]
+    dresses: Product[],
+    active?: boolean
 }

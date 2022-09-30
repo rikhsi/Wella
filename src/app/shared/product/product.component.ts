@@ -9,7 +9,7 @@ import { Product } from '../../models/product';
 })
 export class ProductComponent implements OnInit {
 
-  fallback = null;
+  fallback = '../../../assets/img/loading.jpg';
 
   @Input() product!: Product;
 

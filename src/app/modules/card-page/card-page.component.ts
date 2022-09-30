@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, ActivatedRouteSnapshot, Params, Router } from '@angular/router';
 import { NavigationService } from 'src/app/services/navigation.service';
 import { BreadCrumb } from 'src/app/models/breadCrumb';
 import { Product } from 'src/app/models/product';
@@ -15,6 +15,7 @@ export class CardPageComponent implements OnInit {
   products!: Product[];
   product!: Product;
   myParam!: number;
+  noSame!: boolean;
   pages: BreadCrumb[] = [
     {
       id: 2,
@@ -29,7 +30,38 @@ export class CardPageComponent implements OnInit {
   ]
   categoryId!: number;
 
-  constructor(private activeRoute: ActivatedRoute, private navigation: NavigationService, private productsService: ProductsService, private categoriesService: CategoriesService) { }
+  constructor(private activedRoute: ActivatedRoute, private navigation: NavigationService, private productsService: ProductsService, private categoriesService: CategoriesService, private router: Router) { }
+
+  getGood(): void {
+    this.activedRoute.params.subscribe((params: Params) => this.myParam = params['id']);
+    this.productsService.getDress(this.myParam).subscribe({
+      next: data => {
+        if (data.categories) {
+          this.product = data;
+          this.categoriesService.getSingle(data?.categories[0].id).subscribe({
+            next: data => {
+              if (data.dresses.length === 0) {
+                this.noSame = false;
+              } else {
+                this.products = data.dresses;
+                this.noSame = true;
+              }
+            },
+            error: () => {
+              this.noSame = false;
+            }
+          })
+        } else {
+          this.router.navigate(['/home'])
+        }
+      },
+      error: (err) => {
+        console.log(this.myParam)
+        console.log(err)
+        this.router.navigate(['/home'])
+      }
+    })
+  }
 
   ngOnInit(): void {
     window.scrollTo({ top: 0 });
@@ -37,16 +69,6 @@ export class CardPageComponent implements OnInit {
     setTimeout(() => {
       this.navigation.changeRoute(false);
     }, 10);
-    this.activeRoute.params.subscribe((params: Params) => this.myParam = params['id']);
-    this.productsService.getDress(this.myParam).subscribe({
-      next: data => {
-        this.product = data;
-      }
-    })
-    this.categoriesService.getSingle(6).subscribe({
-      next: data => {
-        this.products = data.dresses
-      }
-    })
+    this.getGood();
   }
 }

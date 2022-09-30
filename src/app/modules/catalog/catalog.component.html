@@ -8,7 +8,20 @@
                 <app-filters (shareID)="handleProduct($event)"></app-filters>
             </div>
             <div nz-col nzSpan="24">
-                <app-cards [products]="products"></app-cards>
+                <nz-empty     
+                    *ngIf="isEmpty"              
+                    [nzNotFoundContent]="contentTpl"
+                >
+                    <ng-template #contentTpl>
+                    <span class="empty__text">
+                        {{'empty' | translate}}
+                    </span>
+                    </ng-template>
+                </nz-empty>
+                <div *ngIf="!isLoading" class="spin">
+                    <nz-spin nzSize="large"></nz-spin> 
+                </div>
+                <app-cards [products]="products" *ngIf="!isEmpty"></app-cards>
             </div>
         </div>
     </div>

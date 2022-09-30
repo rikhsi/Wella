@@ -21,7 +21,7 @@ export class BannerComponent implements OnInit, OnDestroy {
   activeBanners: Advertisement[] = [];
   showRows = false;
   tableLoading: boolean = false;
-  fallback = null;
+  fallback = '../../../assets/img/loading.jpg';
   tabsIndex: number = 1;
   setOfChecked = new Set<number>();
   confirmModal?: NzModalRef;

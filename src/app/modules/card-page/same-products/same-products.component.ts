@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { Product } from 'src/app/models/product';
 import { SwiperOptions } from "swiper";
@@ -11,6 +11,7 @@ import { SwiperOptions } from "swiper";
 export class SameProductsComponent implements OnInit {
 
   @Input() products!: Product[];
+  @Output() changeParam = new EventEmitter();
 
   config: SwiperOptions = {
     slidesPerView: 'auto',
@@ -57,6 +58,13 @@ export class SameProductsComponent implements OnInit {
   };
 
   constructor(private router: Router) { }
+
+  emit() {
+    this.changeParam.emit();
+    setTimeout(() => {
+      window.location.reload();
+    }, 500);
+  }
 
   navigate(): void {
     setTimeout(() => {

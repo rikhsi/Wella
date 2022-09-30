@@ -1,7 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { Subscription } from 'rxjs';
+import { AuthService } from 'src/app/services/api/auth.service';
 import { CategoriesService } from 'src/app/services/api/categories.service';
 
 @Component({
@@ -13,8 +15,9 @@ import { CategoriesService } from 'src/app/services/api/categories.service';
 export class CategoryComponent implements OnInit, OnDestroy {
   newFilter!: FormGroup;
   addSub!: Subscription;
+  uploading!: boolean;
 
-  constructor(private fb: FormBuilder, private msg: NzMessageService, private categoriesService: CategoriesService) {
+  constructor(private fb: FormBuilder, private msg: NzMessageService, private categoriesService: CategoriesService, private auth: AuthService, private router: Router) {
     this.newFilter = this.fb.group({
       title: [null, [Validators.required]]
     });
@@ -22,12 +25,17 @@ export class CategoryComponent implements OnInit, OnDestroy {
 
   submitForm(): void {
     if (this.newFilter.valid) {
+      this.uploading = true;
       this.addSub = this.categoriesService.addCategory(this.newFilter.value).subscribe({
         next: () => {
+          this.uploading = false;
           this.newFilter.reset();
           this.msg.success(' Успешно создан');
         },
         error: () => {
+          this.uploading = false;
+          this.auth.removeToken();
+          this.router.navigate(['/login'])
           this.msg.error('Не удалось загрузить');
         }
       })

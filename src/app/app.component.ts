@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from './services/api/auth.service';
 import { MainService } from './services/main.service';
 
 @Component({
@@ -10,17 +11,17 @@ export class AppComponent implements OnInit {
   isLoading: boolean = false;
   defaultPage: boolean = true;
 
-  constructor(private main: MainService) { }
+  constructor(private main: MainService, private auth: AuthService) { }
 
   loading(): void {
     this.isLoading = true;
     setTimeout(() => {
       this.isLoading = false;
-    }, (2000));
+    }, 700);
   }
 
   ngOnInit(): void {
-    this.loading();
+    this.auth.isLoggedIn();
     this.main.isDefaultPage.subscribe(data => {
       this.defaultPage = data
     })

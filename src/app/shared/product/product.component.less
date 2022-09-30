@@ -1,6 +1,10 @@
 @import '../../styles/textStyles.less';
 @import '../../styles/colors.less';
-@import '../../styles/img.animation.less';
+
+h1,
+h2 {
+    margin: 0;
+}
 
 .product {
     transition: 0.3s;
@@ -32,7 +36,6 @@
         transition: 0.3s;
         overflow: hidden;
         pointer-events: none;
-        .imgAnimation();
 
         @media (max-width:991px) {
             height: 300px;

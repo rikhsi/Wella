@@ -1,31 +1,46 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, of, throwError } from 'rxjs';
 
 export interface auth {
   token: string;
 }
-export const headers = { 'x-access-tokens': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZXhwIjoxNjk5ODYwMDMwfQ.dfwxetg8KRIAeXl-U-h3pq0N3AcaxsculJoWJVJxDvQ' }
-export const url = 'http://192.168.0.104:5000/'
+export let headers = { 'x-access-tokens': '' }
+export const url = 'http://wellabridal.uz/api/'
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
+  isLogged!: boolean;
+
   constructor(private router: Router, private http: HttpClient) { }
 
   setToken(token: string) {
-    localStorage.setItem('token', token);
+    localStorage.setItem('token', token)
+    headers = { 'x-access-tokens': token }
   }
 
   getToken() {
-    return localStorage.getItem('token')
+    let token = localStorage.getItem('token')
+    if (token !== null) {
+      this.setToken(token)
+    } else {
+      this.isLogged = false
+    }
   }
 
   isLoggedIn() {
-    return this.getToken() !== null;
+    this.getToken()
+    this.check().subscribe(data => {
+      if (data.message === 'token is invalid') {
+        this.isLogged = false
+      } else {
+        this.isLogged = true
+      }
+    })
+    return this.isLogged
   }
 
   removeToken() {
@@ -33,6 +48,10 @@ export class AuthService {
   }
 
   login(userInfo: auth) {
-    return this.http.post<auth>(url, userInfo);
+    return this.http.post<any>(url + 'login', userInfo);
+  }
+
+  check() {
+    return this.http.get<any>(url + 'check', { headers })
   }
 }

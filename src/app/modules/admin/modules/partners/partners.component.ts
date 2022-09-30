@@ -16,7 +16,7 @@ export class PartnersComponent implements OnInit, OnDestroy {
   getSub!: Subscription;
   deleteSub!: Subscription;
   partners: Advertisement[] = [];
-  fallback = null;
+  fallback = '../../../assets/img/loading.jpg';
   tableLoading: boolean = false;
   confirmModal?: NzModalRef;
 

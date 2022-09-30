@@ -24,7 +24,7 @@ export class CardsComponent implements OnInit, OnDestroy {
   setOfBestsellers = new Set<number>();
   tabsIndex: number = 1;
   copy!: string;
-  fallback = null;
+  fallback = '../../../assets/img/loading.jpg';
   isVisible = false;
   showTableRows = false;
   tableLoading = false;
@@ -49,7 +49,7 @@ export class CardsComponent implements OnInit, OnDestroy {
 
   showModal(id: number): void {
     this.isVisible = true;
-    this.copy = `http://localhost:4200/card/${id}`
+    this.copy = `http://wellabridal.uz/card/${id}`
   }
 
   handleOk(): void {
@@ -110,7 +110,6 @@ export class CardsComponent implements OnInit, OnDestroy {
   getActiveCollections() {
     this.productsService.getCollection().subscribe({
       next: (data) => {
-        console.log(data)
         this.newCollection = data;
         this.tableLoading = false;
       },
@@ -189,7 +188,7 @@ export class CardsComponent implements OnInit, OnDestroy {
     this.productsService.updateBestseller(listOfId).subscribe({
       next: () => {
         this.tableLoading = false;
-        this.setOfCollection.clear();
+        this.setOfBestsellers.clear();
         this.msg.success(' Успешно назначен');
       },
       error: () => {

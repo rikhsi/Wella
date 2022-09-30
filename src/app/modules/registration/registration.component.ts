@@ -2,20 +2,22 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { AuthService } from 'src/app/services/api/auth.service';
+import { AuthService, headers } from 'src/app/services/api/auth.service';
 import { MainService } from 'src/app/services/main.service';
+import { NzMessageService } from 'ng-zorro-antd/message';
 
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
-  styleUrls: ['./registration.component.less']
+  styleUrls: ['./registration.component.less'],
+  providers: [NzMessageService]
 })
 export class RegistrationComponent implements OnInit {
   logIn!: FormGroup;
   logSub!: Subscription;
   loading: boolean = false;
 
-  constructor(private fb: FormBuilder, private main: MainService, private auth: AuthService, private router: Router) {
+  constructor(private fb: FormBuilder, private main: MainService, private auth: AuthService, private msg: NzMessageService, private router: Router) {
     this.logIn = this.fb.group({
       name: [null, [Validators.required]],
       password: [null, [Validators.required]],
@@ -25,19 +27,18 @@ export class RegistrationComponent implements OnInit {
   submitForm(): void {
     if (this.logIn.valid) {
       this.loading = true;
-      this.logSub = this.auth.login(this.logIn.value).subscribe({
-        next: (data) => {
-          this.auth.setToken(data.token)
+      this.auth.login(this.logIn.value).subscribe({
+        next: data => {
+          localStorage.setItem('token', data.token);
+          this.auth.setToken(data.token);
           this.router.navigate(['/admin'])
-          this.logIn.reset();
           this.loading = false;
-        },
-        error: () => {
-          this.logIn.reset();
+        }, error: () => {
           this.loading = false;
+          this.router.navigate(['/login'])
+          this.msg.error('Неправильные данные');
         }
       })
-
     } else {
       Object.values(this.logIn.controls).forEach(control => {
         if (control.invalid) {
@@ -48,10 +49,12 @@ export class RegistrationComponent implements OnInit {
     }
   }
 
+  backHome(): void {
+    this.router.navigate(['/home'])
+  }
+
   ngOnInit(): void {
-    if (this.auth.isLoggedIn()) {
-      this.router.navigate(['/admin'])
-    }
+    this.router.navigate(['/admin'])
     setTimeout(() => {
       this.main.setPage(false);
     }, 10);

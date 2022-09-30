@@ -1,14 +1,29 @@
 @import '../../styles/textStyles.less';
 
 .log {
+
+    &__home {
+        position: relative;
+        z-index: 1000;
+        width: auto;
+        height: auto;
+        font-size: 25px;
+    }
+
     &__container {
         height: 100vh;
         background-color: #093545;
     }
 
     &__title {
+        position: absolute;
+        width: 100%;
         text-align: center;
         .text(400, 64px, 80px, white);
+
+        h1 {
+            color: inherit;
+        }
     }
 
     &__info {

@@ -2,12 +2,14 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './guards/auth.guard';
 import { HomeComponent } from './modules/home/home.component';
+import { ProductResolver } from './services/api/product.resolver';
 
 const routes: Routes = [
   { path: "home", component: HomeComponent },
   {
     path: "card/:id",
-    loadChildren: () => import('./modules/card-page/card-page.module').then(m => m.CardPageModule)
+    resolve: { data: ProductResolver },
+    loadChildren: () => import('./modules/card-page/card-page.module').then(m => m.CardPageModule),
   },
   {
     path: "catalog",

@@ -11,13 +11,9 @@
                             <div nz-row [nzGutter]="[{xl:20,lg:20,md:15,sm:15,xs:15},0]" nzAlign="middle">
                                 <div nz-col>
                                     <div nz-button nzType="primary" (click)="catalogRoute()" [ngClass]="{header__page: isCatalogPage}"  class="header__catalog">
-                                        <div class="header__catalog-burger" *ngIf="!isCatalogPage">
-                                            <span></span>
-                                            <span></span>
-                                            <span></span>                                   
-                                        </div>     
+                                        <span nz-icon nzType="menu" nzTheme="outline"  style="font-size: 20px; color: black;" *ngIf="!isCatalogPage"></span>    
                                         <span nz-icon nzType="close" nzTheme="outline"  style="font-size: 16px; color: white;" *ngIf="isCatalogPage"></span>                                                                              
-                                        <span class="header__catalog-text">{{'header.catalog' | translate}}</span>
+                                        <span [ngClass]="{color: isCatalogPage}" class="header__catalog-text">{{'header.catalog' | translate}}</span>
                                     </div>
                                 </div>
                                 <div nz-col>

@@ -5,7 +5,14 @@
                 <nz-spin nzSimple [nzSize]="'large'" *ngIf="loading"></nz-spin>
             </div>
             <div nz-col nzSpan="24">
-                <h1 class="log__title">Войти</h1>
+                <div nz-row nzAlign="middle">
+                    <div nz-col>
+                        <button nz-button nzType="primary" class="log__home" (click)="backHome()"><span nz-icon nzType="home" nzTheme="outline"></span></button>
+                    </div>
+                    <div nz-col nzFlex="auto" class="log__title">
+                        <h1>Войти</h1>
+                    </div>
+                </div>
             </div>
             <div nz-col nzSpan="24">
                 <h2 class="log__info">Войдите и начните управлять магазином, только для персонала</h2>

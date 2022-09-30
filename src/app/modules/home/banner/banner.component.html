@@ -4,7 +4,7 @@
             <swiper [config]="config" class="banner__swiper">
                 <ng-template swiperSlide *ngFor="let banner of banners">
                     <div class="banner__img ">
-                        <img nz-image [nzSrc]="banner.photo" [nzFallback]="fallback" onerror="this.parentNode.removeChild(this)">
+                        <img nz-image [nzSrc]="banner.photo" [nzFallback]="fallback">
                     </div>
                 </ng-template>
             </swiper>

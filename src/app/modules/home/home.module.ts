@@ -26,7 +26,7 @@ import { SwiperModule } from 'swiper/angular';
 import { AlertModule } from 'src/app/shared/alert/alert.module';
 import { ProductModule } from 'src/app/shared/product/product.module';
 import { MediaModule } from 'src/app/shared/media/media.module';
-
+import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
 //formModuleAngular
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -63,7 +63,8 @@ import { TranslateModule } from '@ngx-translate/core';
     FormsModule,
     ReactiveFormsModule,
     TranslateModule,
-    NgxMaskModule
+    NgxMaskModule,
+    NzSkeletonModule
   ]
 })
 export class HomeModule { }

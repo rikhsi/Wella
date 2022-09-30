@@ -14,7 +14,7 @@ import { SwiperComponent } from 'swiper/angular';
 
 export class BannerComponent implements OnInit, OnDestroy {
   getSub!: Subscription;
-  fallback = null;
+  fallback = '../../../assets/img/loading.jpg';
 
   banners!: Advertisement[];
 

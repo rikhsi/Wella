@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MainService } from 'src/app/services/main.service';
-import { AdminService } from 'src/app/services/admin.service';
 import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
+import { AuthService, headers, url } from 'src/app/services/api/auth.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-admin',
@@ -15,7 +16,7 @@ export class AdminComponent implements OnInit {
     {
       id: 1,
       route: 'admin/banner',
-      isShow: false,
+      isShow: true,
       type: 'global',
       name: 'Баннер'
     },
@@ -40,23 +41,58 @@ export class AdminComponent implements OnInit {
       type: 'sort-descending',
       name: 'Фильтры'
     },
+    {
+      id: 5,
+      route: 'admin/gallery',
+      isShow: false,
+      type: 'area-chart',
+      name: 'Галерея'
+    },
+  ]
+  creates = [
+    {
+      id: 1,
+      name: 'Создать товар',
+      route: 'admin/create/goods',
+      type: 'book',
+      selected: false
+    },
+    {
+      id: 2,
+      name: 'Создать рекламу',
+      route: 'admin/create/advertising',
+      type: 'global',
+      selected: false
+    },
+    {
+      id: 3,
+      name: 'Создать категорию',
+      route: 'admin/create/category',
+      type: 'sort-descending',
+      selected: false
+    },
+    {
+      id: 4,
+      name: 'Создать галерею',
+      route: 'admin/create/gallery',
+      type: 'area-chart',
+      selected: false
+    }
   ]
 
-  constructor(private router: Router, private main: MainService, private adminService: AdminService, private modal: NzModalService,) { }
+  constructor(private router: Router, private main: MainService, private modal: NzModalService, private auth: AuthService, private http: HttpClient) { }
 
   navigateToPage(route: string): void {
+    this.creates.map((item) => {
+      item.selected = false
+    })
     this.router.navigate([route])
   }
 
-  subscirbeToActivePage(): void {
-    this.adminService.id.subscribe((id) => {
-      this.pages.map((item) => {
-        if (item.id === id) {
-          item.isShow = true
-        } else {
-          item.isShow = false
-        }
-      })
+  selectedNone(route: string) {
+    this.router.navigate([route])
+    this.pages.map((item) => {
+      item.isShow = false
     })
   }
 
@@ -69,6 +105,7 @@ export class AdminComponent implements OnInit {
       nzClosable: false,
       nzAutofocus: null,
       nzOnOk: () => {
+        this.auth.removeToken();
         this.router.navigate(['/login'])
       }
     });
@@ -76,7 +113,6 @@ export class AdminComponent implements OnInit {
 
   ngOnInit(): void {
     this.router.navigate(['admin/banner'])
-    this.subscirbeToActivePage();
     setTimeout(() => {
       this.main.setPage(false);
     }, 10);

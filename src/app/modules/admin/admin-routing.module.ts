@@ -23,6 +23,10 @@ const routes: Routes = [
         loadChildren: () => import('./modules/filters/filters.module').then(m => m.FiltersModule)
       },
       {
+        path: 'gallery',
+        loadChildren: () => import('./modules/gallery/gallery.module').then(m => m.GalleryModule)
+      },
+      {
         path: 'create',
         loadChildren: () => import('./modules/create/create.module').then(m => m.CreateModule)
       },
