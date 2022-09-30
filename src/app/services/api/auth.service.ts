@@ -1,10 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
+import { auth } from 'src/app/models/auth';
 
-export interface auth {
-  token: string;
-}
 export let headers = { 'x-access-tokens': '' }
 export const url = 'http://wellabridal.uz/api/'
 
@@ -15,11 +12,11 @@ export class AuthService {
 
   isLogged!: boolean;
 
-  constructor(private router: Router, private http: HttpClient) { }
+  constructor(private http: HttpClient) { }
 
   setToken(token: string) {
     localStorage.setItem('token', token)
-    headers = { 'x-access-tokens': token }
+    headers['x-access-tokens'] = token;
   }
 
   getToken() {
@@ -48,7 +45,7 @@ export class AuthService {
   }
 
   login(userInfo: auth) {
-    return this.http.post<any>(url + 'login', userInfo);
+    return this.http.post<auth>(url + 'login', userInfo);
   }
 
   check() {
