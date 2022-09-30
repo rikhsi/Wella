@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Product } from 'src/app/models/product';
+import { HandleLangService } from 'src/app/services/handle-lang.service';
 import SwiperCore, { Autoplay, FreeMode, Mousewheel, Navigation, SwiperOptions, Thumbs } from "swiper";
 import { SwiperComponent } from 'swiper/angular';
 
@@ -15,6 +16,7 @@ export class DescriptionComponent implements OnInit {
   thumbsSwiper = null;
   isVisible: boolean = false;
   isAlertVisible: boolean = false;
+  currentLang: boolean = true;
   @Input() product!: Product;
 
   configBig: SwiperOptions = {
@@ -63,7 +65,7 @@ export class DescriptionComponent implements OnInit {
     }
   };
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private handleLang: HandleLangService) {
     SwiperCore.use([Mousewheel, FreeMode, Navigation, Thumbs, Autoplay]);
   }
 
@@ -90,6 +92,8 @@ export class DescriptionComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    this.handleLang.message.subscribe(data => {
+      this.currentLang = data;
+    })
   }
 }

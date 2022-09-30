@@ -19,7 +19,8 @@ export class CategoryComponent implements OnInit, OnDestroy {
 
   constructor(private fb: FormBuilder, private msg: NzMessageService, private categoriesService: CategoriesService, private auth: AuthService, private router: Router) {
     this.newFilter = this.fb.group({
-      title: [null, [Validators.required]]
+      title: [null, [Validators.required]],
+      title_uz: [null, [Validators.required]]
     });
   }
 

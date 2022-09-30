@@ -58,13 +58,19 @@
                 <div nz-col nzXl="12" nzLg="11" nzXs="24" class="card">
                     <div nz-row [nzGutter]="[0,{xl:48,lg:36,md:36,sm:36,xs:36}]">
                         <div nz-col nzSpan="24" class="card__title">
-                            <span>
+                            <span *ngIf="currentLang">
                                 {{product?.title}}
+                            </span>
+                            <span *ngIf="!currentLang">
+                                {{product?.title_uz}}
                             </span>
                         </div>
                         <div nz-col nzSpan="24" class="card__info">
-                            <span>
+                            <span *ngIf="currentLang">
                                 {{product?.description}}
+                            </span>
+                            <span *ngIf="!currentLang">
+                                {{product?.description_uz}}
                             </span>
                         </div>
                         <div nz-col nzSpan="24" class="card__table">
@@ -105,7 +111,8 @@
                                             <span class="card__table-title">{{'card.color' | translate}}</span>
                                         </div>
                                         <div nz-col>
-                                            <span class="card__table-info">{{product?.color}}</span>
+                                            <span class="card__table-info" *ngIf="currentLang">{{product?.color}}</span>
+                                            <span class="card__table-info" *ngIf="!currentLang">{{product?.color_uz}}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -124,9 +131,13 @@
                                         <div nz-col>
                                             <span class="card__table-title">{{'card.available' | translate}}</span>
                                         </div>
-                                        <div nz-col>
+                                        <div nz-col *ngIf="currentLang">
                                             <span class="card__table-info" *ngIf="product?.available">Есть</span>
                                             <span class="card__table-info" *ngIf="!product?.available">Нет</span>
+                                        </div>
+                                        <div nz-col *ngIf="!currentLang">
+                                            <span class="card__table-info" *ngIf="product?.available">Bor</span>
+                                            <span class="card__table-info" *ngIf="!product?.available">Yo`q</span>
                                         </div>
                                     </div>
                                 </div>

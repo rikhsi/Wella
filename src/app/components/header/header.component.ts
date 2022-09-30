@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
+import { HandleLangService } from 'src/app/services/handle-lang.service';
 import { NavigationService } from 'src/app/services/navigation.service';
 
 @Component({
@@ -13,7 +14,7 @@ export class HeaderComponent implements OnInit {
   isCatalogPage: boolean = false;
   @Output() showLoading = new EventEmitter();
 
-  constructor(public translate: TranslateService, private router: Router, private navigation: NavigationService) { }
+  constructor(public translate: TranslateService, private router: Router, private navigation: NavigationService, private handleLang: HandleLangService) { }
 
   navigateRoute(): void {
     this.router.navigate(['/']);
@@ -38,6 +39,11 @@ export class HeaderComponent implements OnInit {
     this.currentLanguage = data;
     this.showLoading.emit();
     this.translate.use(data);
+    if (this.currentLanguage === 'uz') {
+      this.handleLang.changeMessage(false)
+    } else {
+      this.handleLang.changeMessage(true);
+    }
   }
 
   ngOnInit(): void {

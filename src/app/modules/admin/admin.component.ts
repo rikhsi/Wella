@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MainService } from 'src/app/services/main.service';
 import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
-import { AuthService, headers, url } from 'src/app/services/api/auth.service';
-import { HttpClient } from '@angular/common/http';
+import { AuthService } from 'src/app/services/api/auth.service';
+import { HandleLangService } from 'src/app/services/handle-lang.service';
 
 @Component({
   selector: 'app-admin',
@@ -79,8 +79,8 @@ export class AdminComponent implements OnInit {
       selected: false
     }
   ]
-
-  constructor(private router: Router, private main: MainService, private modal: NzModalService, private auth: AuthService, private http: HttpClient) { }
+  switchValue = true;
+  constructor(private router: Router, private main: MainService, private modal: NzModalService, private auth: AuthService, private handleLang: HandleLangService) { }
 
   navigateToPage(route: string): void {
     this.creates.map((item) => {
@@ -109,6 +109,11 @@ export class AdminComponent implements OnInit {
         this.router.navigate(['/login'])
       }
     });
+  }
+
+  langSet() {
+    this.switchValue = !this.switchValue
+    this.handleLang.changeMessage(this.switchValue)
   }
 
   ngOnInit(): void {

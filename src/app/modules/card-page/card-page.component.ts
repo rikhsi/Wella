@@ -55,9 +55,7 @@ export class CardPageComponent implements OnInit {
           this.router.navigate(['/home'])
         }
       },
-      error: (err) => {
-        console.log(this.myParam)
-        console.log(err)
+      error: () => {
         this.router.navigate(['/home'])
       }
     })

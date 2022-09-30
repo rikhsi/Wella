@@ -8,12 +8,14 @@
         <div nz-row [nzGutter]="[0,8]">
             <div nz-col nzSpan="24">
                 <div class="product__title">
-                    <h1 nz-typography [nzEllipsis]="true">{{product.title}}</h1>
+                    <h1 nz-typography [nzEllipsis]="true" *ngIf="currentLang">{{product.title}}</h1>
+                    <h1 nz-typography [nzEllipsis]="true" *ngIf="!currentLang">{{product.title_uz}}</h1>
                 </div>
             </div>
             <div nz-col nzSpan="24">
                 <div class="product__info">
-                    <h2 nz-typography [nzEllipsis]="true">{{product.description}}</h2>
+                    <h2 nz-typography [nzEllipsis]="true" *ngIf="currentLang">{{product.description}}</h2>
+                    <h2 nz-typography [nzEllipsis]="true" *ngIf="!currentLang">{{product.description_uz}}</h2>
                 </div>
             </div>
         </div>

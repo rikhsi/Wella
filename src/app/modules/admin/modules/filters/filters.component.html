@@ -22,7 +22,8 @@
                                 <tbody>
                                     <tr *ngFor="let data of filters.data">
                                         <td>{{data.id}}</td>
-                                        <td [nzEllipsis]="true">{{data.title}}</td>
+                                        <td [nzEllipsis]="true" *ngIf="currentLang">{{data.title}}</td>
+                                        <td [nzEllipsis]="true" *ngIf="!currentLang">{{data.title_uz}}</td>
                                         <td>{{ data.created_at }}</td>
                                         <td>
                                             <div nz-row nzJustify="space-between">

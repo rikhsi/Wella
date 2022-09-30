@@ -5,6 +5,7 @@ import { Product } from 'src/app/models/product';
 import { Subscription } from 'rxjs';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { ProductsService } from 'src/app/services/api/products.service';
+import { HandleLangService } from 'src/app/services/handle-lang.service';
 
 @Component({
   selector: 'app-cards',
@@ -25,12 +26,13 @@ export class CardsComponent implements OnInit, OnDestroy {
   tabsIndex: number = 1;
   copy!: string;
   fallback = '../../../assets/img/loading.jpg';
+  currentLang: boolean = true;
   isVisible = false;
   showTableRows = false;
   tableLoading = false;
   confirmModal?: NzModalRef;
 
-  constructor(private modal: NzModalService, private adminService: AdminService, private msg: NzMessageService, private productsService: ProductsService) { }
+  constructor(private modal: NzModalService, private adminService: AdminService, private msg: NzMessageService, private productsService: ProductsService, private handleLang: HandleLangService) { }
 
   //modal
   showConfirm(id: number): void {
@@ -206,6 +208,9 @@ export class CardsComponent implements OnInit, OnDestroy {
     this.getProducts();
     this.getActiveCollections();
     this.getActiveBestsellers();
+    this.handleLang.message.subscribe(data => {
+      this.currentLang = data
+    })
   }
 
   ngOnDestroy(): void {

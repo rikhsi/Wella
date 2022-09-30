@@ -1,11 +1,18 @@
 <div class="goods__container">
     <div nz-row [nzGutter]="[0,50]">
         <div nz-col nzSpan="24">
-            <p class="goods__title">Введите данные чтобы создать товар</p>
+            <div nz-row nzJustify="space-between" nzAlign="middle">
+                <div nz-col>
+                    <p class="goods__title">Введите данные чтобы создать товар</p>
+                </div>
+                <div nz-col>
+                    <nz-switch [(ngModel)]="switchValue" nzCheckedChildren="Uz"></nz-switch>
+                </div>
+            </div>
         </div>
         <div nz-col nzSpan="24">
             <form [formGroup]="newGood">
-                <div nz-row [nzGutter]="[20,20]">
+                <div nz-row [nzGutter]="[20,20]" *ngIf="!switchValue">
                     <div nz-col nzSpan="12">
                         <div nz-row>
                             <nz-form-control nzSpan="24" nzHasFeedback>
@@ -109,6 +116,29 @@
                                 <button nz-button nzType="primary" (click)="resetForm($event)" class="goods__form__buttons goods__form__buttons__reset">Очистить</button>
                             </div>
                         </div>               
+                    </div>
+                </div>
+                <div nz-row [nzGutter]="[20,20]" *ngIf="switchValue">
+                    <div nz-col nzSpan="12">
+                        <div nz-row>
+                            <nz-form-control nzSpan="24" nzHasFeedback>
+                                <input formControlName="title_uz" nz-input placeholder="Mahsulot nomini to`ldiring" class="goods__form__input"/>
+                            </nz-form-control>
+                        </div>                     
+                    </div>
+                    <div nz-col nzSpan="12">
+                        <div nz-row>
+                            <nz-form-control nzSpan="24" nzHasFeedback>
+                                <input formControlName="color_uz" nz-input placeholder="Mahsulot rangini kiriting" class="goods__form__input"/>
+                            </nz-form-control>
+                        </div>   
+                    </div>
+                    <div nz-col nzSpan="12">
+                        <div nz-row>
+                            <nz-form-control nzSpan="24" nzHasFeedback>
+                                <textarea formControlName="description_uz" nz-input rows="2" placeholder="Mahsulot haqida ma`lumot bering" class="goods__form__textArea"></textarea>
+                            </nz-form-control>
+                        </div>      
                     </div>
                 </div>
             </form>

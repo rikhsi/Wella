@@ -5,6 +5,7 @@ import { Filter } from 'src/app/models/filter';
 import { CategoriesService } from 'src/app/services/api/categories.service';
 import { Subscription } from 'rxjs';
 import { NzMessageService } from 'ng-zorro-antd/message';
+import { HandleLangService } from 'src/app/services/handle-lang.service';
 
 @Component({
   selector: 'app-filters',
@@ -16,10 +17,11 @@ export class FiltersComponent implements OnInit, OnDestroy {
   delete!: Subscription;
   get!: Subscription;
   categories!: Filter[];
+  currentLang: boolean = true;
   tableLoading: boolean = false;
   confirmModal?: NzModalRef;
 
-  constructor(private modal: NzModalService, private adminService: AdminService, private categoriesService: CategoriesService, private msg: NzMessageService) { }
+  constructor(private modal: NzModalService, private adminService: AdminService, private categoriesService: CategoriesService, private msg: NzMessageService, private handleLang: HandleLangService) { }
 
   //get
   getCategories(): void {
@@ -75,6 +77,9 @@ export class FiltersComponent implements OnInit, OnDestroy {
       this.adminService.changePage(4)
     }, 10);
     this.getCategories();
+    this.handleLang.message.subscribe(data => {
+      this.currentLang = data
+    })
   }
 
   ngOnDestroy(): void {

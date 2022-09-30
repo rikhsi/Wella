@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Filter } from 'src/app/models/filter';
 import { CategoriesService } from 'src/app/services/api/categories.service';
+import { HandleLangService } from 'src/app/services/handle-lang.service';
 
 @Component({
   selector: 'app-filters',
@@ -8,11 +9,12 @@ import { CategoriesService } from 'src/app/services/api/categories.service';
   styleUrls: ['./filters.component.less']
 })
 export class FiltersComponent implements OnInit {
+  currentLang: boolean = true;
   all!: boolean;
   buttons!: Filter[];
   @Output() shareID = new EventEmitter();
 
-  constructor(private categoriesService: CategoriesService) { }
+  constructor(private categoriesService: CategoriesService, private handleLang: HandleLangService) { }
 
   getCategories(): void {
     this.all = true;
@@ -40,5 +42,8 @@ export class FiltersComponent implements OnInit {
 
   ngOnInit(): void {
     this.getCategories();
+    this.handleLang.message.subscribe(data => {
+      this.currentLang = data
+    })
   }
 }

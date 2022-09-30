@@ -12,6 +12,8 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzButtonModule } from 'ng-zorro-antd/button';
+import { NzSwitchModule } from 'ng-zorro-antd/switch';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { NzButtonModule } from 'ng-zorro-antd/button';
     NzIconModule,
     NzGridModule,
     NzTableModule,
-    NzButtonModule
+    NzButtonModule,
+    NzSwitchModule,
+    FormsModule
   ]
 })
 export class AdminModule { }

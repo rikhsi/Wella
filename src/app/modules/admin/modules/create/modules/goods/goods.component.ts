@@ -23,16 +23,20 @@ export class GoodsComponent implements OnInit, OnDestroy {
   uploading = false;
   photoList: NzUploadFile[] = [];
   categories!: Filter[];
+  switchValue = false;
 
   constructor(private fb: FormBuilder, private msg: NzMessageService, private productsService: ProductsService, private categoriesService: CategoriesService, private auth: AuthService, private router: Router) {
     this.newGood = this.fb.group({
       title: [null, [Validators.required]],
+      title_uz: [null, [Validators.required]],
       brand: [null, [Validators.required]],
       country: [null, [Validators.required]],
       size: [null, [Validators.required]],
       color: [null, [Validators.required]],
+      color_uz: [null, [Validators.required]],
       price: [null, [Validators.required]],
       description: [null, [Validators.required]],
+      description_uz: [null, [Validators.required]],
       category: [null, [Validators.required]],
       available: [null, [Validators.required]],
       isBestSeller: [false],
@@ -83,13 +87,17 @@ export class GoodsComponent implements OnInit, OnDestroy {
           this.msg.error('Не удалось создать товар');
         }
       })
-    } else {
+    }
+    if (this.newGood.invalid) {
       Object.values(this.newGood.controls).forEach(control => {
         if (control.invalid) {
           control.markAsDirty();
           control.updateValueAndValidity({ onlySelf: true });
         }
       });
+    }
+    if (!this.newGood.controls['title_uz'].valid) {
+      this.msg.error('Переводите нужные данные');
     }
   }
 

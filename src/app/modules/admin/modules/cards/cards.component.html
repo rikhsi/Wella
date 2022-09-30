@@ -79,9 +79,11 @@
                                                 <img nz-image [nzSrc]="data.photos[0]" [nzFallback]="fallback" onerror="this.parentNode.removeChild(this)">
                                             </div>
                                         </td>
-                                        <td [nzEllipsis]="true">{{data?.title}}</td>
-                                        <td [nzEllipsis]="true">{{data?.description}}</td>
-                                        <td [nzEllipsis]="true" *ngIf="data.categories.length !== 0">
+                                        <td [nzEllipsis]="true" *ngIf="currentLang">{{data?.title}}</td>
+                                        <td [nzEllipsis]="true" *ngIf="!currentLang">{{data?.title_uz}}</td>
+                                        <td [nzEllipsis]="true" *ngIf="currentLang">{{data?.description}}</td>
+                                        <td [nzEllipsis]="true" *ngIf="!currentLang">{{data?.description_uz}}</td>
+                                        <td [nzEllipsis]="true" *ngIf="data.categories.length !== 0 && currentLang">
                                             <a nz-dropdown [nzDropdownMenu]="menu">
                                                 {{data.categories[0].title}}
                                                 <span nz-icon nzType="down"></span>
@@ -92,14 +94,33 @@
                                                 </ul>
                                             </nz-dropdown-menu>
                                         </td>
-                                        <td [nzEllipsis]="true" *ngIf="data.categories.length === 0">Пусто</td>
+                                        <td [nzEllipsis]="true" *ngIf="data.categories.length !== 0 && !currentLang">
+                                            <a nz-dropdown [nzDropdownMenu]="menu">
+                                                {{data.categories[0].title_uz}}
+                                                <span nz-icon nzType="down"></span>
+                                            </a>
+                                            <nz-dropdown-menu #menu="nzDropdownMenu">
+                                                <ul nz-menu>
+                                                    <li nz-menu-item *ngFor="let category of data.categories"> {{category.title_uz}}</li>
+                                                </ul>
+                                            </nz-dropdown-menu>
+                                        </td>
+                                        <td [nzEllipsis]="true" *ngIf="data.categories.length === 0 && !currentLang">Bo`sh</td>
+                                        <td [nzEllipsis]="true" *ngIf="data.categories.length === 0 && currentLang">Пусто</td>
                                         <td [nzEllipsis]="true">{{data?.brand}}</td>
                                         <td [nzEllipsis]="true">{{data?.country}}</td>
                                         <td [nzEllipsis]="true">{{data?.size}}</td>
-                                        <td [nzEllipsis]="true">{{data?.color}}</td>
+                                        <td [nzEllipsis]="true" *ngIf="currentLang">{{data?.color}}</td>
+                                        <td [nzEllipsis]="true" *ngIf="!currentLang">{{data?.color_uz}}</td>
                                         <td [nzEllipsis]="true">{{data?.price}}</td>
-                                        <td *ngIf="data.available">Есть</td>
-                                        <td *ngIf="!data.available">Нет</td>
+                                        <td *ngIf="data.available">
+                                            <span *ngIf="currentLang">Есть</span>
+                                            <span *ngIf="!currentLang">Bor</span>
+                                        </td>
+                                        <td *ngIf="!data.available">
+                                            <span *ngIf="currentLang">Нет</span>
+                                            <span *ngIf="!currentLang">Yo`q</span>
+                                        </td>
                                         <td>{{ data.created_at }}</td>
                                         <td *ngIf="!showTableRows">
                                             <div nz-row nzJustify="space-between">
@@ -152,9 +173,11 @@
                                             <img nz-image [nzSrc]="data.photos[0]" [nzFallback]="fallback" onerror="this.parentNode.removeChild(this)">
                                         </div>
                                     </td>
-                                    <td [nzEllipsis]="true">{{data.title}}</td>
-                                    <td [nzEllipsis]="true">{{data.description}}</td>
-                                    <td [nzEllipsis]="true" *ngIf="data.categories.length !== 0">
+                                    <td [nzEllipsis]="true" *ngIf="currentLang">{{data.title}}</td>
+                                    <td [nzEllipsis]="true" *ngIf="!currentLang">{{data.title_uz}}</td>
+                                    <td [nzEllipsis]="true" *ngIf="currentLang">{{data.description}}</td>
+                                    <td [nzEllipsis]="true" *ngIf="!currentLang">{{data.description_uz}}</td>
+                                    <td [nzEllipsis]="true" *ngIf="data.categories.length !== 0 && currentLang">
                                         <a nz-dropdown [nzDropdownMenu]="menu">
                                             {{data.categories[0].title}}
                                             <span nz-icon nzType="down"></span>
@@ -165,14 +188,33 @@
                                             </ul>
                                         </nz-dropdown-menu>
                                     </td>
-                                    <td [nzEllipsis]="true" *ngIf="data.categories.length === 0">Пусто</td>
+                                    <td [nzEllipsis]="true" *ngIf="data.categories.length !== 0 && !currentLang">
+                                        <a nz-dropdown [nzDropdownMenu]="menu">
+                                            {{data.categories[0].title_uz}}
+                                            <span nz-icon nzType="down"></span>
+                                        </a>
+                                        <nz-dropdown-menu #menu="nzDropdownMenu">
+                                            <ul nz-menu nzSelectable>
+                                                <li nz-menu-item *ngFor="let category of data.categories"> {{category.title_uz}}</li>
+                                            </ul>
+                                        </nz-dropdown-menu>
+                                    </td>
+                                    <td [nzEllipsis]="true" *ngIf="data.categories.length === 0 && !currentLang">Bo`sh</td>
+                                    <td [nzEllipsis]="true" *ngIf="data.categories.length === 0 && currentLang">Пусто</td>
                                     <td [nzEllipsis]="true">{{data.brand}}</td>
                                     <td [nzEllipsis]="true">{{data.country}}</td>
                                     <td [nzEllipsis]="true">{{data.size}}</td>
-                                    <td [nzEllipsis]="true">{{data.color}}</td>
+                                    <td [nzEllipsis]="true" *ngIf="currentLang">{{data.color}}</td>
+                                    <td [nzEllipsis]="true" *ngIf="!currentLang">{{data.color_uz}}</td>
                                     <td [nzEllipsis]="true">{{data.price}}</td>
-                                    <td *ngIf="data.available">Есть</td>
-                                    <td *ngIf="!data.available">Нет</td>
+                                    <td *ngIf="data.available">
+                                        <span *ngIf="currentLang">Есть</span>
+                                        <span *ngIf="!currentLang">Bor</span>
+                                    </td>
+                                    <td *ngIf="!data.available">
+                                        <span *ngIf="currentLang">Нет</span>
+                                        <span *ngIf="!currentLang">Yo`q</span>
+                                    </td>
                                     <td>{{ data.created_at}}</td>
                                 </tr>
                             </tbody>
@@ -211,27 +253,48 @@
                                                 <img nz-image [nzSrc]="data.photos[0]" [nzFallback]="fallback" onerror="this.parentNode.removeChild(this)">
                                             </div>
                                         </td>
-                                        <td [nzEllipsis]="true">{{data.title}}</td>
-                                        <td [nzEllipsis]="true">{{data.description}}</td>
-                                        <td [nzEllipsis]="true" *ngIf="data.categories.length !== 0">
+                                        <td [nzEllipsis]="true" *ngIf="currentLang">{{data.title}}</td>
+                                        <td [nzEllipsis]="true" *ngIf="!currentLang">{{data.title_uz}}</td>
+                                        <td [nzEllipsis]="true" *ngIf="currentLang">{{data.description}}</td>
+                                        <td [nzEllipsis]="true" *ngIf="!currentLang">{{data.description_uz}}</td>
+                                        <td [nzEllipsis]="true" *ngIf="data.categories.length !== 0 && currentLang">
                                             <a nz-dropdown [nzDropdownMenu]="menu">
                                                 {{data.categories[0].title}}
                                                 <span nz-icon nzType="down"></span>
                                             </a>
                                             <nz-dropdown-menu #menu="nzDropdownMenu">
-                                                <ul nz-menu nzSelectable>
+                                                <ul nz-menu>
                                                     <li nz-menu-item *ngFor="let category of data.categories"> {{category.title}}</li>
                                                 </ul>
                                             </nz-dropdown-menu>
                                         </td>
-                                        <td [nzEllipsis]="true" *ngIf="data.categories.length === 0">Пусто</td>
+                                        <td [nzEllipsis]="true" *ngIf="data.categories.length !== 0 && !currentLang">
+                                            <a nz-dropdown [nzDropdownMenu]="menu">
+                                                {{data.categories[0].title_uz}}
+                                                <span nz-icon nzType="down"></span>
+                                            </a>
+                                            <nz-dropdown-menu #menu="nzDropdownMenu">
+                                                <ul nz-menu>
+                                                    <li nz-menu-item *ngFor="let category of data.categories"> {{category.title_uz}}</li>
+                                                </ul>
+                                            </nz-dropdown-menu>
+                                        </td>
+                                        <td [nzEllipsis]="true" *ngIf="data.categories.length === 0 && !currentLang">Bo`sh</td>
+                                        <td [nzEllipsis]="true" *ngIf="data.categories.length === 0 && currentLang">Пусто</td>
                                         <td [nzEllipsis]="true">{{data.brand}}</td>
                                         <td [nzEllipsis]="true">{{data.country}}</td>
                                         <td [nzEllipsis]="true">{{data.size}}</td>
-                                        <td [nzEllipsis]="true">{{data.color}}</td>
+                                        <td [nzEllipsis]="true" *ngIf="currentLang">{{data.color}}</td>
+                                        <td [nzEllipsis]="true" *ngIf="!currentLang">{{data.color_uz}}</td>
                                         <td [nzEllipsis]="true">{{data.price}}</td>
-                                        <td *ngIf="data.available">Есть</td>
-                                        <td *ngIf="!data.available">Нет</td>
+                                        <td *ngIf="data.available">
+                                            <span *ngIf="currentLang">Есть</span>
+                                            <span *ngIf="!currentLang">Bor</span>
+                                        </td>
+                                        <td *ngIf="!data.available">
+                                            <span *ngIf="currentLang">Нет</span>
+                                            <span *ngIf="!currentLang">Yo`q</span>
+                                        </td>
                                         <td>{{ data.created_at }}</td>
                                     </tr>
                                 </tbody>
