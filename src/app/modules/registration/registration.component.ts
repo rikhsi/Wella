@@ -29,9 +29,8 @@ export class RegistrationComponent implements OnInit {
       this.loading = true;
       this.auth.login(this.logIn.value).subscribe({
         next: data => {
-          localStorage.setItem('token', data.token);
           this.auth.setToken(data.token);
-          this.router.navigate(['/admin'])
+          this.router.navigate(['admin'])
           this.loading = false;
         }, error: () => {
           this.loading = false;

@@ -43,7 +43,7 @@ export class CardPageComponent implements OnInit {
               if (data.dresses.length === 0) {
                 this.noSame = false;
               } else {
-                this.products = data.dresses;
+                this.products = data.dresses
                 this.noSame = true;
               }
             },

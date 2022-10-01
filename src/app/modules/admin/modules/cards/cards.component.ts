@@ -140,14 +140,12 @@ export class CardsComponent implements OnInit, OnDestroy {
   deleteProduct(id: number): void {
     this.tableLoading = true;
     this.deleteSub = this.productsService.delete(id).subscribe({
-      next: data => {
-        console.log(data);
+      next: () => {
         this.allCards = this.allCards.filter(d => d.id !== id);
         this.tableLoading = false;
         this.msg.success(' Успешно удалено');
       },
-      error: error => {
-        console.error('There was an error!', error);
+      error: () => {
         this.tableLoading = false;
         this.msg.error('Не удалось удалить');
       }

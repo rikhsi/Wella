@@ -106,7 +106,7 @@ export class AdminComponent implements OnInit {
       nzAutofocus: null,
       nzOnOk: () => {
         this.auth.removeToken();
-        this.router.navigate(['/login'])
+        this.router.navigate(['login'])
       }
     });
   }
