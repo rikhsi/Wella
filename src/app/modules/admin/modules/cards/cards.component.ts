@@ -51,7 +51,7 @@ export class CardsComponent implements OnInit, OnDestroy {
 
   showModal(id: number): void {
     this.isVisible = true;
-    this.copy = `http://wellabridal.uz/card/${id}`
+    this.copy = `https://wellabridal.uz/card/${id}`
   }
 
   handleOk(): void {

@@ -29,10 +29,12 @@ export class CardPageComponent implements OnInit {
     }
   ]
   categoryId!: number;
+  isLoading: boolean = false;
 
   constructor(private activedRoute: ActivatedRoute, private navigation: NavigationService, private productsService: ProductsService, private categoriesService: CategoriesService, private router: Router) { }
 
   getGood(): void {
+    this.isLoading = !this.isLoading;
     this.activedRoute.params.subscribe((params: Params) => this.myParam = params['id']);
     this.productsService.getDress(this.myParam).subscribe({
       next: data => {
@@ -42,13 +44,16 @@ export class CardPageComponent implements OnInit {
             next: data => {
               if (data.dresses.length === 0) {
                 this.noSame = false;
+                this.isLoading = !this.isLoading;
               } else {
-                this.products = data.dresses
+                this.products = data.dresses.filter(d => d.id !== +this.myParam)
                 this.noSame = true;
+                this.isLoading = !this.isLoading;
               }
             },
             error: () => {
               this.noSame = false;
+              this.isLoading = !this.isLoading;
             }
           })
         } else {

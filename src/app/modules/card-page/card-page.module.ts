@@ -10,6 +10,7 @@ import { DescriptionComponent } from './description/description.component';
 import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzImageModule } from 'ng-zorro-antd/image';
+import { NzSpinModule } from 'ng-zorro-antd/spin';
 
 //swiperModule
 import { SwiperModule } from 'swiper/angular';
@@ -44,7 +45,8 @@ import { CardPageRoutingModule } from './card-page-routing.module';
     ModalModule,
     AlertModule,
     BreadCrumpModule,
-    TranslateModule
+    TranslateModule,
+    NzSpinModule
   ]
 })
 

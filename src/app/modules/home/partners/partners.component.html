@@ -1,6 +1,6 @@
 <div class="partners__wrapper">
-    <nz-skeleton [nzActive]="!isLoading"  *ngIf="!isLoading"></nz-skeleton>
-    <div nz-row *ngIf="isLoading">
+    <nz-skeleton [nzActive]="true"  *ngIf="!isLoaded"></nz-skeleton>
+    <div nz-row *ngIf="isLoaded">
         <div nz-col nzSpan="24">
             <swiper [config]="config" class="partners__swiper">
                 <ng-template swiperSlide *ngFor="let partner of partners">

@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Advertisement } from 'src/app/models/banner';
-import { Product } from 'src/app/models/product';
 import { GalleryService } from 'src/app/services/api/gallery.service';
 import SwiperCore, { EffectFade, Navigation, SwiperOptions, Pagination, Autoplay, Virtual } from "swiper";
 import { SwiperComponent } from 'swiper/angular';
@@ -11,9 +10,8 @@ import { SwiperComponent } from 'swiper/angular';
   styleUrls: ['./gallery.component.less']
 })
 export class GalleryComponent implements OnInit {
-
+  isLoaded: boolean = false;
   fallback = null;
-
   galleryList!: Advertisement[];
 
   config: SwiperOptions = {
@@ -48,6 +46,9 @@ export class GalleryComponent implements OnInit {
     this.galleryService.getTrue().subscribe({
       next: data => {
         this.galleryList = data
+        if (data.length !== 0) {
+          this.isLoaded = !this.isLoaded
+        }
       }
     })
   }

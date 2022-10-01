@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { auth } from 'src/app/models/auth';
 
 export let headers = { 'x-access-tokens': '' }
-export const url = 'http://wellabridal.uz/api/'
+export const url = 'https://wellabridal.uz/api/'
 
 @Injectable({
   providedIn: 'root'

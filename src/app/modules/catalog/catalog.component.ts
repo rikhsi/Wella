@@ -11,6 +11,8 @@ import { CategoriesService } from 'src/app/services/api/categories.service';
   styleUrls: ['./catalog.component.less']
 })
 export class CatalogComponent implements OnInit {
+  isLoading = false;
+  isEmpty = true;
   products!: Product[];
   page: BreadCrumb[] = [
     {
@@ -19,8 +21,7 @@ export class CatalogComponent implements OnInit {
       route: "/catalog",
     }
   ]
-  isLoading = false;
-  isEmpty = true;
+
   constructor(private navigation: NavigationService, private productsService: ProductsService, private categoriesService: CategoriesService) {
   }
 

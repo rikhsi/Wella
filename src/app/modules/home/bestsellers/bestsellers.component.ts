@@ -10,7 +10,7 @@ import { SwiperOptions } from "swiper";
   styleUrls: ['./bestsellers.component.less']
 })
 export class BestsellersComponent implements OnInit {
-
+  isLoaded: boolean = false;
   config: SwiperOptions = {
     slidesPerView: 'auto',
     spaceBetween: 20,
@@ -69,6 +69,9 @@ export class BestsellersComponent implements OnInit {
     this.productsService.getBestseller().subscribe({
       next: data => {
         this.products = data;
+        if (data.length !== 0) {
+          this.isLoaded = !this.isLoaded
+        }
       }
     })
   }

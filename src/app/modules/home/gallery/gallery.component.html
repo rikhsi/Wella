@@ -8,7 +8,28 @@
                     </svg>  
                 </button>
                 <div nz-col nzXl="20" nzLg="21" nzXs="24">
-                    <swiper [config]="config" class="gallery__swiper">
+                    <div nz-row [nzGutter]="[20,16]" *ngIf="!isLoaded">
+                        <div nz-col nzSm="12" nzXs="24" class="gallery__big">
+                            <nz-skeleton-element nzType="button" [nzActive]="true" nz-col nzSpan="24" class="gallery__img"></nz-skeleton-element>
+                        </div>
+                        <div nz-col nzSm="12" nzXs="24">
+                            <div nz-row [nzGutter]="[20,20]">
+                                <div nz-col nzFlex="50%" class="gallery__small">
+                                    <nz-skeleton-element nzType="button" [nzActive]="true" nz-col nzSpan="24" class="gallery__img"></nz-skeleton-element>
+                                </div>
+                                <div nz-col nzFlex="50%" class="gallery__small">
+                                    <nz-skeleton-element nzType="button" [nzActive]="true" nz-col nzSpan="24" class="gallery__img"></nz-skeleton-element>
+                                </div>
+                                <div nz-col nzFlex="50%" class="gallery__small">
+                                    <nz-skeleton-element nzType="button" [nzActive]="true" nz-col nzSpan="24" class="gallery__img"></nz-skeleton-element> 
+                                </div>
+                                <div nz-col nzFlex="50%" class="gallery__small">
+                                    <nz-skeleton-element nzType="button" [nzActive]="true" nz-col nzSpan="24" class="gallery__img"></nz-skeleton-element>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <swiper [config]="config" class="gallery__swiper" *ngIf="isLoaded">
                         <ng-template swiperSlide *ngFor="let photo of galleryList">
                             <div nz-row [nzGutter]="[20,16]">
                                 <div nz-col nzSm="12" nzXs="24" class="gallery__big">

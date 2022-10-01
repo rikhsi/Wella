@@ -17,10 +17,7 @@ export class ProductComponent implements OnInit {
   constructor(private router: Router, private handleLang: HandleLangService) { }
 
   routerNavigate(): void {
-    setTimeout(() => {
-      this.router.navigate(['card/', this.product.id]);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }, 300);
+    this.router.navigate(['card/', this.product.id]);
   }
 
   ngOnInit(): void {
@@ -28,5 +25,4 @@ export class ProductComponent implements OnInit {
       this.currentLang = data
     })
   }
-
 }

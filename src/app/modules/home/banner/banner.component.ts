@@ -14,7 +14,8 @@ import { SwiperComponent } from 'swiper/angular';
 
 export class BannerComponent implements OnInit, OnDestroy {
   getSub!: Subscription;
-  fallback = '../../../assets/img/loading.jpg';
+  fallback = '../../../../assets/img/loading.jpg';
+  isLoaded: boolean = false;
 
   banners!: Advertisement[];
 
@@ -50,6 +51,9 @@ export class BannerComponent implements OnInit, OnDestroy {
     this.getSub = this.bannersService.getTrue().subscribe({
       next: data => {
         this.banners = data;
+        if (data.length !== 0) {
+          this.isLoaded = !this.isLoaded
+        }
       }
     })
   }

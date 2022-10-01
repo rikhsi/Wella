@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { AdminRoutingModule } from './admin-routing.module';
 import { AdminComponent } from './admin.component';
+import { FormsModule } from '@angular/forms';
 
 //ngZorroStyles
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
@@ -13,7 +14,7 @@ import { NzGridModule } from 'ng-zorro-antd/grid';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzSwitchModule } from 'ng-zorro-antd/switch';
-import { FormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [

@@ -25,7 +25,7 @@ const routes: Routes = [
     path: "login",
     loadChildren: () => import('./modules/registration/registration.module').then(m => m.RegistrationModule),
   },
-  { path: "**", redirectTo: "/home", pathMatch: 'full' }
+  { path: "**", redirectTo: "/home" }
 ];
 
 @NgModule({

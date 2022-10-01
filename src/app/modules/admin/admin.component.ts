@@ -11,6 +11,7 @@ import { HandleLangService } from 'src/app/services/handle-lang.service';
   styleUrls: ['./admin.component.less']
 })
 export class AdminComponent implements OnInit {
+  switchValue = true;
   confirmModal?: NzModalRef;
   pages = [
     {
@@ -32,7 +33,7 @@ export class AdminComponent implements OnInit {
       route: 'admin/cards',
       isShow: false,
       type: 'book',
-      name: 'Карточка товара'
+      name: 'Продукты'
     },
     {
       id: 4,
@@ -79,7 +80,7 @@ export class AdminComponent implements OnInit {
       selected: false
     }
   ]
-  switchValue = true;
+
   constructor(private router: Router, private main: MainService, private modal: NzModalService, private auth: AuthService, private handleLang: HandleLangService) { }
 
   navigateToPage(route: string): void {

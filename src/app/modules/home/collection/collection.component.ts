@@ -10,6 +10,7 @@ import { SwiperOptions } from "swiper";
   styleUrls: ['./collection.component.less']
 })
 export class CollectionComponent implements OnInit {
+  isLoaded: boolean = false;
   config: SwiperOptions = {
     slidesPerView: 'auto',
     spaceBetween: 20,
@@ -53,7 +54,6 @@ export class CollectionComponent implements OnInit {
       }
     }
   };
-
   products!: Product[];
 
   navigate(): void {
@@ -68,6 +68,9 @@ export class CollectionComponent implements OnInit {
     this.productsService.getCollection().subscribe({
       next: data => {
         this.products = data;
+        if (data.length !== 0) {
+          this.isLoaded = !this.isLoaded
+        }
       }
     })
   }

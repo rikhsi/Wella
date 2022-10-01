@@ -18,6 +18,7 @@ import { NzImageModule } from 'ng-zorro-antd/image';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzCheckboxModule } from 'ng-zorro-antd/checkbox';
+import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
 
 //swiperModule
 import { SwiperModule } from 'swiper/angular';
@@ -26,7 +27,7 @@ import { SwiperModule } from 'swiper/angular';
 import { AlertModule } from 'src/app/shared/alert/alert.module';
 import { ProductModule } from 'src/app/shared/product/product.module';
 import { MediaModule } from 'src/app/shared/media/media.module';
-import { NzSkeletonModule } from 'ng-zorro-antd/skeleton';
+
 //formModuleAngular
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 

@@ -9,9 +9,10 @@ import { SwiperOptions } from "swiper";
   styleUrls: ['./same-products.component.less']
 })
 export class SameProductsComponent implements OnInit {
-
+  @Input() myParam!: number;
   @Input() products!: Product[];
   @Output() changeParam = new EventEmitter();
+  @Input() isLoading!: boolean;
 
   config: SwiperOptions = {
     slidesPerView: 'auto',
@@ -60,10 +61,10 @@ export class SameProductsComponent implements OnInit {
   constructor(private router: Router) { }
 
   emit() {
-    this.changeParam.emit();
     setTimeout(() => {
-      window.location.reload();
-    }, 500);
+      this.changeParam.emit();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 200);
   }
 
   navigate(): void {
@@ -72,6 +73,5 @@ export class SameProductsComponent implements OnInit {
     }, 700);
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 }

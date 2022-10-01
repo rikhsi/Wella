@@ -3,6 +3,11 @@ import { CommonModule } from '@angular/common';
 
 import { FiltersRoutingModule } from './filters-routing.module';
 import { FiltersComponent } from './filters.component';
+
+//ngZorroModules
+import { NzAlertModule } from 'ng-zorro-antd/alert';
+import { NzTabsModule } from 'ng-zorro-antd/tabs';
+import { NzTypographyModule } from 'ng-zorro-antd/typography';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { NzGridModule } from 'ng-zorro-antd/grid';
@@ -11,10 +16,6 @@ import { NzUploadModule } from 'ng-zorro-antd/upload';
 import { NzModalModule } from 'ng-zorro-antd/modal';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { NzButtonModule } from 'ng-zorro-antd/button';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NzAlertModule } from 'ng-zorro-antd/alert';
-import { NzTabsModule } from 'ng-zorro-antd/tabs';
-import { NzTypographyModule } from 'ng-zorro-antd/typography';
 
 @NgModule({
   declarations: [
@@ -31,9 +32,7 @@ import { NzTypographyModule } from 'ng-zorro-antd/typography';
     NzModalModule,
     NzInputModule,
     NzButtonModule,
-    FormsModule,
     NzAlertModule,
-    ReactiveFormsModule,
     NzTabsModule,
     NzTypographyModule,
   ]

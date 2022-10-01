@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -12,7 +12,7 @@ import { NzMessageService } from 'ng-zorro-antd/message';
   styleUrls: ['./registration.component.less'],
   providers: [NzMessageService]
 })
-export class RegistrationComponent implements OnInit {
+export class RegistrationComponent implements OnInit, OnDestroy {
   logIn!: FormGroup;
   logSub!: Subscription;
   loading: boolean = false;
@@ -57,6 +57,10 @@ export class RegistrationComponent implements OnInit {
     setTimeout(() => {
       this.main.setPage(false);
     }, 10);
+  }
+
+  ngOnDestroy(): void {
+    if (this.logSub) this.logSub.unsubscribe();
   }
 
 }

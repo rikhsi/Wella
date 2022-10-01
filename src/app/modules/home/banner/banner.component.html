@@ -1,9 +1,12 @@
 <div class="banner__wrapper">
     <div nz-row  nzJustify="center" [nzGutter]="[0,{xl:40,lg:40,md:30,sm:30,xs:20}]">
         <div nz-col nzSpan="24">
-            <swiper [config]="config" class="banner__swiper">
+            <div nz-row>
+                <nz-skeleton-element nzType="button" [nzActive]="true" nz-col nzSpan="24" class="banner__swiper" *ngIf="!isLoaded"></nz-skeleton-element>
+            </div>
+            <swiper [config]="config" class="banner__swiper" *ngIf="isLoaded">
                 <ng-template swiperSlide *ngFor="let banner of banners">
-                    <div class="banner__img ">
+                    <div class="banner__img">
                         <img nz-image [nzSrc]="banner.photo" [nzFallback]="fallback">
                     </div>
                 </ng-template>
@@ -32,4 +35,5 @@
         </div>
     </div>
 </div>
+
 
