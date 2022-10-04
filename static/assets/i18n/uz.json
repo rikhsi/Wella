@@ -1,0 +1,89 @@
+{
+    "header": {
+        "map": "Yandex.Maps-dagi joylashuv",
+        "catalog": "Katalog"
+    },
+    "footer": {
+        "button": "Arizangizni yuboring",
+        "left": {
+            "info": "'WELLA' to'y saloni kelinlarga bugungi kunda to'y modasi olamida mavjud bo'lgan eng yaxshi narsalarni taklif qilish va bir joyda to`plash g'oyasi bilan yaratilgan."
+        },
+        "middle": {
+            "title": "Manzil",
+            "adress": "Alisher Navoi 343 , Chirchiq, O`zbekiston",
+            "location": "Yandex.Maps-dagi joylashuv",
+            "date": "Xar kuni",
+            "time": "8:00 dan 18:00 gacha"
+        },
+        "right": {
+            "title": "Kontaktlar"
+        },
+        "scroll": "Yuqoriga qaytish"
+    },
+    "introduction": {
+        "title": "To'y libosi va aksessuarlari har qanday tanlov uchun",
+        "info": "Ish kunida ariza qoldiring va 20% chegirmaga ega bo`ling",
+        "button": "Ro'yxatdan o'tish"
+    },
+    "form": {
+        "title": "RO‘YXATDAN O‘TISH UCHUN MA‘LUMOTINGIZNI QOLDIRING",
+        "clientName": "Ism",
+        "clientNameError": "Iltimos, ismingizni kiriting!",
+        "clientNumber": "Telefon raqam",
+        "clientNumberError": "Iltimos, telefon raqamingizni kiriting!",
+        "button": "Yuborish",
+        "check": "Men maxfiylik siyosatiga roziman, shaxsiy ma'lumotlarni qayta ishlashga va axborot byulletenlarini olishga roziman"
+    },
+    "collection": {
+        "title": "Yangi kolleksiya"
+    },
+    "bestsellers": {
+        "title": "Bestsellerlar"
+    },
+    "about": {
+        "convenience": {
+            "title": "Qulaylik",
+            "info": "Istagingiz haqida bizga xabar bering, qolganini biz siz uchun qilamiz"
+        },
+        "unique": {
+            "title": "O'ziga xoslik",
+            "info": "Har bir kiyim bilan sizning individualligingizni ta'kidlash istagi"
+        },
+        "quality": {
+            "title": "Sifat",
+            "info": "Dizayner va professional tikuvchilar bilan ta'minlash"
+        }
+    },
+    "catalog": {
+        "title": "Barcha mahsulotlar",
+        "button": "Barcha"
+    },
+    "card": {
+        "brand": "Brend",
+        "country": "Davlat",
+        "size": "O`lcham",
+        "color": "Rang",
+        "price": "Narx",
+        "available": "Sotuvda",
+        "button": "Narxni bilish"
+    },
+    "sameProducts": {
+        "title": "O`xshash maxsulotlar"
+    },
+    "alert": {
+        "thanks": "Raxmat,",
+        "title": " Arizangiz yuborildi!",
+        "info": "Menejerimiz tez orada siz bilan bog'lanadi",
+        "button": "Hop"
+    },
+    "navigation": {
+        "prev": "Bosh sahifa",
+        "current": "Mahsulot sahifasi"
+    },
+    "breadCrump": {
+        "main": "Kirish",
+        "catalog": "Katalog",
+        "cardPage": "Mahsulot sahifasi"
+    },
+    "empty": "Ushbu filtrda mahsulot yo'q"
+}

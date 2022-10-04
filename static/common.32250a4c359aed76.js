@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkWella=self.webpackChunkWella||[]).push([[592],{2359:(I,l,o)=>{o.d(l,{L:()=>A});var r=o(5e3),c=o(615),s=o(9808),_=o(2124),p=o(969);let A=(()=>{class t{}return t.\u0275fac=function(e){return new(e||t)},t.\u0275mod=r.oAB({type:t}),t.\u0275inj=r.cJS({imports:[[c.vT,s.ez,_.PV,p.T]]}),t})()}}]);

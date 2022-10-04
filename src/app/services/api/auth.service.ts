@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { auth } from 'src/app/models/auth';
 
 export let headers = { 'x-access-tokens': '' }
-export const url = 'https://wellabridal.uz/api/'
+export const url = 'http://wellabridal.uz/api/'
 
 @Injectable({
   providedIn: 'root'
@@ -31,7 +31,7 @@ export class AuthService {
   isLoggedIn() {
     this.getToken()
     this.check().subscribe(data => {
-      if (data.message === 'token is invalid') {
+      if (data.message === 'a valid token is missing') {
         this.isLogged = false
       } else {
         this.isLogged = true
