@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { Product } from 'src/app/models/product';
 import { ProductsService } from 'src/app/services/api/products.service';
 import { SwiperOptions } from "swiper";
@@ -9,8 +10,9 @@ import { SwiperOptions } from "swiper";
   templateUrl: './bestsellers.component.html',
   styleUrls: ['./bestsellers.component.less']
 })
-export class BestsellersComponent implements OnInit {
+export class BestsellersComponent implements OnInit,OnDestroy {
   isLoaded: boolean = false;
+  sub!: Subscription;
   config: SwiperOptions = {
     slidesPerView: 'auto',
     spaceBetween: 20,
@@ -66,7 +68,7 @@ export class BestsellersComponent implements OnInit {
   constructor(private router: Router, private productsService: ProductsService) { }
 
   ngOnInit(): void {
-    this.productsService.getBestseller().subscribe({
+    this.sub =  this.productsService.getBestseller().subscribe({
       next: data => {
         this.products = data;
         if (data.length !== 0) {
@@ -74,6 +76,10 @@ export class BestsellersComponent implements OnInit {
         }
       }
     })
+  }
+
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
   }
 
 }

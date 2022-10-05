@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { Product } from 'src/app/models/product';
 import { ProductsService } from 'src/app/services/api/products.service';
 import { SwiperOptions } from "swiper";
@@ -9,7 +10,8 @@ import { SwiperOptions } from "swiper";
   templateUrl: './collection.component.html',
   styleUrls: ['./collection.component.less']
 })
-export class CollectionComponent implements OnInit {
+export class CollectionComponent implements OnInit,OnDestroy {
+  sub! : Subscription;
   isLoaded: boolean = false;
   config: SwiperOptions = {
     slidesPerView: 'auto',
@@ -65,7 +67,7 @@ export class CollectionComponent implements OnInit {
   constructor(private router: Router, private productsService: ProductsService) { }
 
   ngOnInit(): void {
-    this.productsService.getCollection().subscribe({
+    this.sub = this.productsService.getCollection().subscribe({
       next: data => {
         this.products = data;
         if (data.length !== 0) {
@@ -73,5 +75,9 @@ export class CollectionComponent implements OnInit {
         }
       }
     })
+  }
+
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
   }
 }

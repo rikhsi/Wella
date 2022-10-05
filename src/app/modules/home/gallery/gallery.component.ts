@@ -1,4 +1,5 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { Advertisement } from 'src/app/models/banner';
 import { GalleryService } from 'src/app/services/api/gallery.service';
 import SwiperCore, { EffectFade, Navigation, SwiperOptions, Pagination, Autoplay, Virtual } from "swiper";
@@ -9,7 +10,8 @@ import { SwiperComponent } from 'swiper/angular';
   templateUrl: './gallery.component.html',
   styleUrls: ['./gallery.component.less']
 })
-export class GalleryComponent implements OnInit {
+export class GalleryComponent implements OnInit,OnDestroy {
+  sub!: Subscription;
   isLoaded: boolean = false;
   fallback = null;
   galleryList!: Advertisement[];
@@ -43,7 +45,7 @@ export class GalleryComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.galleryService.getTrue().subscribe({
+  this.sub = this.galleryService.getTrue().subscribe({
       next: data => {
         this.galleryList = data
         if (data.length !== 0) {
@@ -51,5 +53,9 @@ export class GalleryComponent implements OnInit {
         }
       }
     })
+  }
+
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
   }
 }
