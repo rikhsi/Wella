@@ -20,7 +20,8 @@
                     <button class="nav__button"  [ngClass]="{nav__active: all}" (click)="getCategoryProducts(0); getCategories();">{{'catalog.button' | translate}}</button>
                 </div>
                 <div nz-col *ngFor="let button of buttons">
-                    <button class="nav__button" [ngClass]="{nav__active: button.active}" (click)="getCategoryProducts(button.id)">{{button.title}}</button>
+                    <button *ngIf="currentLang"  class="nav__button" [ngClass]="{nav__active: button.active}" (click)="getCategoryProducts(button.id)">{{button.title}}</button>
+                    <button *ngIf="!currentLang"  class="nav__button" [ngClass]="{nav__active: button.active}" (click)="getCategoryProducts(button.id)">{{button.title_uz}}</button>
                 </div>
             </div>
         </div>
