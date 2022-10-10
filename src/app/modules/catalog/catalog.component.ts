@@ -4,6 +4,8 @@ import { BreadCrumb } from 'src/app/models/breadCrumb';
 import { Product } from 'src/app/models/product';
 import { ProductsService } from 'src/app/services/api/products.service';
 import { CategoriesService } from 'src/app/services/api/categories.service';
+import { Title } from '@angular/platform-browser';
+import { HandleLangService } from 'src/app/services/handle-lang.service';
 
 @Component({
   selector: 'app-catalog',
@@ -22,7 +24,7 @@ export class CatalogComponent implements OnInit {
     }
   ]
 
-  constructor(private navigation: NavigationService, private productsService: ProductsService, private categoriesService: CategoriesService) {
+  constructor(private navigation: NavigationService, private productsService: ProductsService, private categoriesService: CategoriesService,private title: Title, private langService: HandleLangService) {
   }
 
   handleProduct(id: number) {
@@ -88,5 +90,12 @@ export class CatalogComponent implements OnInit {
       this.navigation.changeRoute(true);
     }, 10);
     this.getAllProducts();
+    this.langService.message.subscribe(data => {
+      if(data){
+        this.title.setTitle('Wella Wedding - каталог')
+      } else{
+        this.title.setTitle('Wella Wedding - katalog')
+      }
+    })
   }
 }

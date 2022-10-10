@@ -16,7 +16,7 @@ export class ModalComponent implements OnInit {
   constructor(private fb: FormBuilder) {
     this.newOrder = this.fb.group({
       userName: [null, [Validators.required, Validators.minLength(3)]],
-      UserPhone: [null, [Validators.required]]
+      userPhone: [null, [Validators.required]]
     });
   }
 
