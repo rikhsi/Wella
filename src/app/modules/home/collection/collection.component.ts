@@ -15,6 +15,7 @@ export class CollectionComponent implements OnInit,OnDestroy {
   isLoaded: boolean = false;
   config: SwiperOptions = {
     slidesPerView: 'auto',
+    touchEventsTarget: 'container',
     spaceBetween: 20,
     grabCursor: true,
     breakpoints: {

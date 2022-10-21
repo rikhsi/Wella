@@ -29,26 +29,15 @@
     }
 
     &__logo {
+        width: 100%;
         position: absolute;
-        z-index: 1000;
-        .logo();
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
-        @media (max-width:1199px) {
-            margin-left: 46%;
-        }
-
-        @media (max-width:991px) {
-            margin-left: 45%;
-        }
-
-        @media (max-width:767px) {
-            margin-left: 44%;
-        }
-
-        @media (max-width:575px) {
-            margin-left: 42%;
-            font-size: 24px;
-            line-height: 20px;
+        h1{
+            .logo();
+            z-index: 1000;
         }
     }
 

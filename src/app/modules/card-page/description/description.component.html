@@ -22,7 +22,7 @@
                                                 </div>
                                                 <swiper [config]="configBig" [thumbs]="{ swiper: thumbsSwiper }" class="mySwiper__big">
                                                     <ng-template swiperSlide *ngFor="let img of product?.photos">
-                                                        <div class="mySwiper__big-img">                                                   
+                                                        <div class="mySwiper__big-img" (click)="preview()">                                                   
                                                             <img nz-image [nzSrc]="img" [nzFallback]="fallback">                                           
                                                         </div>
                                                     </ng-template>
@@ -147,7 +147,7 @@
                             <div nz-row nzJustify="end">
                                 <div nz-col class="card__button">
                                     <button nz-button nzType="primary" (click)="showModal()">{{'card.button' | translate}}</button>
-                                    <app-modal [isVisible]="isVisible" (closeModal)="showModal()" (showAlert)="isAlertShow()" ></app-modal>
+                                    <app-modal [isVisible]="isVisible" [id]="id" [isProductPage]="true" (closeModal)="showModal()" (showAlert)="isAlertShow()"></app-modal>
                                     <app-alert [isVisible]="isAlertVisible" (closeAlert)="isAlertShow()"></app-alert>
                                 </div>
                             </div>

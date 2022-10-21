@@ -15,6 +15,7 @@ export class BestsellersComponent implements OnInit,OnDestroy {
   sub!: Subscription;
   config: SwiperOptions = {
     slidesPerView: 'auto',
+    touchEventsTarget: 'container',
     spaceBetween: 20,
     grabCursor: true,
     breakpoints: {

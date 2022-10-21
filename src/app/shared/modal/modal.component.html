@@ -10,7 +10,7 @@
                         <nz-form-item>
                             <nz-form-control nzErrorTip="{{'form.clientNameError' | translate}}">
                                 <nz-input-group>
-                                    <input name="userName"  formControlName="userName" placeholder="{{'form.clientName' | translate}}" class="modal__input"/>
+                                    <input name="userName" formControlName="userName" placeholder="{{'form.clientName' | translate}}" class="modal__input"/>
                                 </nz-input-group>
                             </nz-form-control>
                         </nz-form-item>
@@ -21,6 +21,9 @@
                                 </nz-input-group>
                             </nz-form-control>
                         </nz-form-item>
+                        <div *ngIf="isProductPage">
+                            <input [value]="id" name="productID" style="display: none;">
+                        </div>
                         <button class="modal__button">{{'form.button' | translate}}</button>
                     </form>
                 </div>

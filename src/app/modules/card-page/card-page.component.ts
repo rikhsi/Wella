@@ -13,7 +13,7 @@ import { Meta, Title } from '@angular/platform-browser';
   templateUrl: './card-page.component.html',
   styleUrls: ['./card-page.component.less']
 })
-export class CardPageComponent implements OnInit, OnDestroy {
+export class CardPageComponent implements OnInit {
   products!: Product[];
   product!: Product;
   myParam!: number;
@@ -37,11 +37,9 @@ export class CardPageComponent implements OnInit, OnDestroy {
     private activedRoute: ActivatedRoute, 
     private navigation: NavigationService, 
     private productsService: ProductsService, 
-    private categoriesService: CategoriesService, 
-    private langService: HandleLangService,
+    private categoriesService: CategoriesService,
     private router: Router,
     private meta: Meta,
-    private title: Title,
   ) { }
 
   getGood(): void {
@@ -88,17 +86,5 @@ export class CardPageComponent implements OnInit, OnDestroy {
       this.navigation.changeRoute(false);
     }, 10);
     this.getGood();
-    this.langService.message.subscribe(data => {
-      if(data){
-        this.title.setTitle('Wella Wedding - страница товара')
-      } else{
-        this.title.setTitle('Wella Wedding - mahsulot sahifasi')
-      }
-    })
-  }
-
-  
-  ngOnDestroy(): void {
-    this.meta.removeTag("name='description'")
   }
 }

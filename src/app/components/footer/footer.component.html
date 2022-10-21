@@ -21,7 +21,7 @@
                                         <div nz-row nzJustify="center">
                                             <div nz-col class="footer__form-button">
                                                 <button (click)="showModal()"> {{'footer.button' | translate}}</button>
-                                                <app-modal [isVisible]="isVisible" (closeModal)="showModal()" (showAlert)="isAlertShow()" ></app-modal>
+                                                <app-modal [isVisible]="isVisible" (closeModal)="showModal()" (showAlert)="isAlertShow()" [isProductPage]="false"></app-modal>
                                                 <app-alert [isVisible]="isAlertVisible" (closeAlert)="isAlertShow()"></app-alert>
                                             </div>
                                         </div>
@@ -50,7 +50,7 @@
                                             <li nz-col>{{'footer.middle.adress' | translate}}</li>
                                             <li nz-col>
                                                 <ul nz-row [nzGutter]="8" nzAlign="middle">
-                                                    <li nz-col>
+                                                    <li nz-col style="max-height: 20px;">
                                                         <a href="https://yandex.uz/maps/-/CCUVQ-cioC" target="_blank"  class="footer__info-location">
                                                             <ul nz-row nzGutter="8">
                                                                 <li nz-col> 

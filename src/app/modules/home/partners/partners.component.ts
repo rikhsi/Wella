@@ -15,6 +15,7 @@ export class PartnersComponent implements OnInit, OnDestroy {
   isLoaded = false;
   config: SwiperOptions = {
     slidesPerView: 'auto',
+    touchEventsTarget: 'container',
     spaceBetween: 0,
     autoplay: {
       delay: 1000

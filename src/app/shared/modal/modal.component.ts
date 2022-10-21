@@ -9,6 +9,8 @@ import emailjs from '@emailjs/browser';
 })
 export class ModalComponent implements OnInit {
   newOrder!: FormGroup;
+  @Input() isProductPage: boolean = false;
+  @Input() id!: string;
   @Input() isVisible!: boolean;
   @Output() closeModal = new EventEmitter();
   @Output() showAlert = new EventEmitter();
@@ -42,5 +44,5 @@ export class ModalComponent implements OnInit {
     this.newOrder.reset();
   }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {}
 }
